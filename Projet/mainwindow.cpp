@@ -10,6 +10,7 @@
 #include <QColorDialog>
 #include "connection.h"
 #include <QPalette>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -250,13 +251,31 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    QSqlQuery query;
-    query.prepare("SET MARKUP HTML ON");
-    query.prepare("SPOOL C:/Users/PCONE/Documents/GestionEmployee/Employee.XLS");
-    query.prepare("SELECT * FROM employee");
-    query.prepare("SPOOL OFF");
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
+                                                        tr("Excel Files (*.xls)"));
+        if (fileName.isEmpty())
+            return;
 
-    query.exec();
+        ExportExcelObject obj(fileName, "Sheet1", ui->tableView);
+
+        obj.addField(0, "matricule", "char(20)");
+        obj.addField(1, "nom", "char(20)");
+        obj.addField(2, "prenom", "char(20)");
+        obj.addField(3, "cin", "char(20)");
+        obj.addField(4, "telephone", "char(20)");
+        obj.addField(5, "email", "char(20)");
+        obj.addField(6, "adresse", "char(20)");
+        obj.addField(7, "date_naissance", "char(20)");
+        obj.addField(8, "password", "char(20)");
+
+
+        int retVal = obj.export2Excel();
+        if( retVal > 0)
+        {
+            QMessageBox::information(this, tr("Done"),
+                                     QString(tr("exported!")).arg(retVal)
+                                     );
+        }
 
 }
 

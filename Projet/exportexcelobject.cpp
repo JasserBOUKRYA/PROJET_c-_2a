@@ -55,8 +55,6 @@ int ExportExcelObject::export2Excel()
         return -4;
     }
 
-
-
     //add all rows
     sSql = QString("INSERT INTO [%1] (").arg(sheetName);
     for (int i = 0; i < fieldList.size(); i++)
