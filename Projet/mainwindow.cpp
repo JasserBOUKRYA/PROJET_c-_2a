@@ -9,20 +9,41 @@
 #include <iostream>
 #include <QColorDialog>
 #include "connection.h"
+#include <QPalette>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    changecolor();
+
+    QRegExp chaine("[a-zA-Z]+$");
+    QRegExpValidator *vali = new QRegExpValidator(chaine, this);
+
+    ui->lineEdit->setValidator(new QIntValidator(0,99999, this));
     ui->lineEdit_4->setValidator(new QIntValidator(0,99999999, this));
-     ui->lineEdit_5->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_5->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_9->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_13->setValidator(new QIntValidator(0,99999999, this));
+    ui->lineEdit_2->setValidator(vali);
+    ui->lineEdit_3->setValidator(vali);
+    ui->lineEdit_11->setValidator(vali);
+    ui->lineEdit_14->setValidator(vali);
+
     ui->tableView->setModel(E_tmp.afficher());
     ui->tableView_2->setModel(E_tmp.afficher());
     ui->tableView_5->setModel(B_tmp.afficher());
     ui->tableView_6->setModel(B_tmp.afficher());
     ui->tableView_7->setModel(B_tmp.afficher());
+
+    ui->tableView->setPalette(QPalette(Qt::lightGray));
+    ui->tableView_2->setPalette(QPalette(Qt::lightGray));
+    ui->tableView_5->setPalette(QPalette(Qt::lightGray));
+    ui->tableView_6->setPalette(QPalette(Qt::lightGray));
+    ui->tableView_7->setPalette(QPalette(Qt::lightGray));
+
+
+     changecolor();
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +54,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+
     QString matricule = ui->lineEdit->text();
     QString nom = ui->lineEdit_2->text();
     QString prenom = ui->lineEdit_3->text();
@@ -41,10 +63,31 @@ void MainWindow::on_pushButton_clicked()
     QString email = ui->lineEdit_6->text();
     QString adresse = ui->lineEdit_7->text();
     QDate date_naissance = ui->dateEdit_2->date();
-
-
-    Employee E(matricule,  nom,  prenom,  cin,  telephone,  email,  adresse, date_naissance);
     QMessageBox msgBox;
+
+    QRegularExpression regexnumber("[0-9]{8}");
+
+    QRegularExpression regexmail("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}"),
+            m_intermediateMailRegExp("[a-z0-9._%+-]*@?[a-z0-9.-]*\\.?[a-z]*");
+
+    if(!regexnumber.match(cin).hasMatch())
+    {
+        msgBox.setText("mauvaise écriture pour le numero CIN");
+    }
+
+    else if(!regexnumber.match(telephone).hasMatch())
+    {
+        msgBox.setText("mauvaise écriture pour le numero telephone");
+    }
+
+    else if(!regexmail.match(email).hasMatch())
+    {
+        msgBox.setText("mauvaise écriture pour l'e-mail");
+    }
+
+    else
+    {
+    Employee E(matricule,  nom,  prenom,  cin,  telephone,  email,  adresse, date_naissance);
     bool test=E.ajouter();
     if(test)
     {
@@ -56,6 +99,8 @@ void MainWindow::on_pushButton_clicked()
         else {
 
         msgBox.setText("Echec au niveau de l'ajout.");
+    }
+
     }
 
     msgBox.exec();
@@ -158,16 +203,37 @@ void MainWindow::on_pushButton_4_clicked()
      email=ui->lineEdit_10->text();
      adresse=ui->lineEdit_12->text();
      date_naissance=ui->dateEdit_3->date();
-     QString value;
+     QMessageBox msgBox;
+
+     QRegularExpression regexnumber("[0-9]{8}");
+
+     QRegularExpression regexmail("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}"),
+             m_intermediateMailRegExp("[a-z0-9._%+-]*@?[a-z0-9.-]*\\.?[a-z]*");
+
+     if(!regexnumber.match(cin).hasMatch())
+     {
+         msgBox.setText("mauvaise écriture pour le numero CIN");
+     }
+
+     else if(!regexnumber.match(telephone).hasMatch())
+     {
+         msgBox.setText("mauvaise écriture pour le numero telephone");
+     }
+
+     else if(!regexmail.match(email).hasMatch())
+     {
+         msgBox.setText("mauvaise écriture pour l'e-mail");
+     }
+
+     else {
 
      QSqlQuery query;
      query.prepare("UPDATE employee SET nom='"+nom+"',  prenom='"+prenom+"',  cin='"+cin+"',  telephone='"+telephone+"',  email='"+email+"', adresse='"+adresse+"', date_naissance = :date_naissance where matricule='"+matricule+"'");
      query.bindValue(":date_naissance", date_naissance);
      if (query.exec())
      {
-         QMessageBox msgBox;
            msgBox.setText("Le Document a été modifié.");
-           msgBox.exec();
+
       ui->tableView->setModel(E_tmp.afficher());
       ui->tableView_2->setModel(E_tmp.afficher());
      }
@@ -176,11 +242,21 @@ void MainWindow::on_pushButton_4_clicked()
      {
          QMessageBox::critical(this,tr("error::"), query.lastError().text());
      }
+
+     }
+
+     msgBox.exec();
 }
 
 void MainWindow::on_pushButton_5_clicked()
 {
-   //int a = Ex.export2Excel();
+    QSqlQuery query;
+    query.prepare("SET MARKUP HTML ON");
+    query.prepare("SPOOL C:/Users/PCONE/Documents/GestionEmployee/Employee.XLS");
+    query.prepare("SELECT * FROM employee");
+    query.prepare("SPOOL OFF");
+
+    query.exec();
 
 }
 

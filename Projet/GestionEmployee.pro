@@ -15,6 +15,7 @@ SOURCES += \
     connection.cpp \
     employee.cpp \
     exportexcelobject.cpp \
+    login.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -23,9 +24,11 @@ HEADERS += \
     connection.h \
     employee.h \
     exportexcelobject.h \
+    login.h \
     mainwindow.h
 
 FORMS += \
+    login.ui \
     mainwindow.ui
 
 # Default rules for deployment.

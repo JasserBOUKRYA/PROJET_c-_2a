@@ -39,8 +39,8 @@ QDate Employee::get_datenaissance(){return date_naissance;}
 bool Employee::ajouter()
 {
     QSqlQuery query;
-            query.prepare("INSERT INTO Employee (matricule, nom, prenom, cin, telephone, email, adresse, date_naissance)"
-                  "VALUES (:matricule, :nom, :prenom, :cin, :telephone, :email, :adresse, :date_naissance)");
+            query.prepare("INSERT INTO Employee (matricule, nom, prenom, cin, telephone, email, adresse, date_naissance, password)"
+                  "VALUES (:matricule, :nom, :prenom, :cin, :telephone, :email, :adresse, :date_naissance, :password)");
     query.bindValue(":matricule", matricule);
     query.bindValue(":nom", nom);
     query.bindValue(":prenom", prenom);
@@ -49,6 +49,8 @@ bool Employee::ajouter()
     query.bindValue(":email", email);
     query.bindValue(":adresse", adresse);
     query.bindValue(":date_naissance", date_naissance);
+    query.bindValue(":password", matricule+cin);
+
 
     return query.exec();
 }

@@ -9,6 +9,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QAbstractItemView>
+#include <QRegExpValidator>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
