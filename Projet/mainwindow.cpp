@@ -229,8 +229,9 @@ void MainWindow::on_pushButton_4_clicked()
      else {
 
      QSqlQuery query;
-     query.prepare("UPDATE employee SET nom='"+nom+"',  prenom='"+prenom+"',  cin='"+cin+"',  telephone='"+telephone+"',  email='"+email+"', adresse='"+adresse+"', date_naissance = :date_naissance where matricule='"+matricule+"'");
+     query.prepare("UPDATE employee SET nom='"+nom+"',  prenom='"+prenom+"',  cin='"+cin+"',  telephone='"+telephone+"',  email='"+email+"', adresse='"+adresse+"', date_naissance = :date_naissance, password = :password where matricule='"+matricule+"'");
      query.bindValue(":date_naissance", date_naissance);
+     query.bindValue(":password", matricule+cin);
      if (query.exec())
      {
            msgBox.setText("Le Document a été modifié.");
@@ -267,6 +268,11 @@ void MainWindow::on_pushButton_5_clicked()
         obj.addField(6, "adresse", "char(20)");
         obj.addField(7, "date_naissance", "char(20)");
         obj.addField(8, "password", "char(20)");
+
+        ui->progressBar->setValue(0);
+            ui->progressBar->setMaximum(ui->tableView->model()->rowCount());
+
+            connect(&obj, SIGNAL(exportedRowCount(int)), ui->progressBar, SLOT(setValue(int)));
 
 
         int retVal = obj.export2Excel();

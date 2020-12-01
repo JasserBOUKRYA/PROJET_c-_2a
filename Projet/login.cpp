@@ -12,6 +12,7 @@ Login::Login(QWidget *parent) :
 
     QPixmap pix("C:/Users/PCONE/Desktop/logo2.png");
     ui->label_3->setPixmap(pix);
+
 }
 
 Login::~Login()
@@ -26,6 +27,7 @@ int Login::on_pushButton_clicked()
     password = ui->lineEdit_2->text();
 
     QSqlQuery query;
+
     if (query.exec("select * from employee where matricule='"+matricule+"' and password='"+password+"'"))
     {
         int count = 0;
@@ -33,17 +35,20 @@ int Login::on_pushButton_clicked()
         {
             count++;
         }
+
         if (matricule == "0000" and password == "0000")
             count = 1;
 
         if (count==1)
         {
             this->hide();
-           return 1;
+            return 1;
         }
+
        else
             return 0;
     }
+
     else
         return -1;
 

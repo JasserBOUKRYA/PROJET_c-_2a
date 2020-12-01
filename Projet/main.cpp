@@ -7,6 +7,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
     Connection c;
     bool test=c.createconnection();
      MainWindow w;
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 
     if (L.on_pushButton_clicked() == 1)
     {
+
         w.show();
         if(test)
         {
@@ -33,8 +35,10 @@ int main(int argc, char *argv[])
                                     "Click Cancel to exit."), QMessageBox::Cancel);
 
     }
+
     else if (L.on_pushButton_clicked() == 0)
-            QMessageBox::critical(nullptr ,QObject::tr("Erreur"), QObject::tr("mot de passe et matricule incorrects"));
+        QMessageBox::critical(nullptr ,QObject::tr("Erreur"), QObject::tr("password et matricule incorrects"));
+
 
 
     return a.exec();
