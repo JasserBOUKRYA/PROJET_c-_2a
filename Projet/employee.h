@@ -34,6 +34,7 @@ public:
     QSqlQueryModel*    afficher();
     bool supprimer(QString);
     bool  rechercher( QString );
+    QSqlQueryModel* search(QString colone,QString text);
 
 
 private:

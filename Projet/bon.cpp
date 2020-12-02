@@ -74,6 +74,16 @@ bool Bon::rechercher(QString numbon)
 
     else return false;
 
+
+}
+
+QSqlQueryModel* Bon::search(QString colone,QString text)
+{
+     QSqlQueryModel* model=new QSqlQueryModel();
+
+     model->setQuery("SELECT * FROM Bons WHERE UPPER("+colone+") LIKE UPPER('"+text+"%')");
+
+     return model;
 }
 
 

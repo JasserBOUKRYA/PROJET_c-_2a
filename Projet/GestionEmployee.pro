@@ -17,7 +17,9 @@ SOURCES += \
     exportexcelobject.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    recherchebon.cpp \
+    rechercher.cpp
 
 HEADERS += \
     bon.h \
@@ -25,11 +27,15 @@ HEADERS += \
     employee.h \
     exportexcelobject.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    recherchebon.h \
+    rechercher.h
 
 FORMS += \
     login.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    recherchebon.ui \
+    rechercher.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

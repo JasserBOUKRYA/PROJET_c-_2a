@@ -28,6 +28,8 @@ public:
     bool supprimer(QString);
     bool  rechercher( QString );
 
+    QSqlQueryModel* search(QString colone,QString text);
+
 private:
     QString numbon, nomvoie, localite;
     QDate datebon;

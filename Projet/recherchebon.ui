@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Recherchebon</class>
+ <widget class="QDialog" name="Recherchebon">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>638</width>
+    <height>458</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>340</y>
+     <width>171</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>561</width>
+     <height>261</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>340</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>NumBon</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>DateBon</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Nbrpoteau</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Nomvoie</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Localite</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Quantite_a_installe</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Quantiterestante</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

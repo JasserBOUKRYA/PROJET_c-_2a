@@ -14,6 +14,8 @@
 #include <QSortFilterProxyModel>
 #include <QTextDocument>
 #include <QPdfWriter>
+#include <rechercher.h>
+#include<recherchebon.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -179,7 +181,7 @@ void MainWindow::on_pushButton_3_clicked()
                 if (test)
                 {
                     msgBox.setText( "Suppression avec succés." );
-                    msgBox.setText("Ajout avec succés.");
+
                     QSqlQueryModel * modal = new QSqlQueryModel(this);
                     QSqlQuery * qry = new QSqlQuery();
                     qry->prepare("Select * from employee");
@@ -680,6 +682,8 @@ void MainWindow::changecolor()
     ui->pushButton_6->setStyleSheet("background-color : skyblue");
     ui->pushButton_14->setStyleSheet("background-color : skyblue");
     ui->pushButton_7->setStyleSheet("background-color : skyblue");
+    ui->pushButton_8->setStyleSheet("background-color : skyblue");
+    ui->pushButton_9->setStyleSheet("background-color : skyblue");
 
 
 }
@@ -693,7 +697,6 @@ void MainWindow::on_pushButton_6_clicked()
 
     if (dialog.exec() != QDialog::Accepted)
         return;
-
 
     ui->textEdit->print(&printer);
 
@@ -731,4 +734,18 @@ void MainWindow::on_pushButton_7_clicked()
 {
     ui->textEdit->clear();
     ui->textEdit->setAlignment(Qt::AlignCenter);
+}
+
+void MainWindow::on_pushButton_8_clicked()
+{
+    Rechercher R;
+    R.setModal(true);
+    R.exec();
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    Recherchebon RB;
+    RB.setModal(true);
+    RB.exec();
 }

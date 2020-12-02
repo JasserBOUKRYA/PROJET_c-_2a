@@ -91,6 +91,13 @@ bool Employee::rechercher(QString matricule)
 
 }
 
+QSqlQueryModel* Employee::search(QString colone,QString text)
+{
+     QSqlQueryModel* model=new QSqlQueryModel();
 
+     model->setQuery("SELECT * FROM Employee WHERE UPPER("+colone+") LIKE UPPER('"+text+"%')");
+
+     return model;
+}
 
 
