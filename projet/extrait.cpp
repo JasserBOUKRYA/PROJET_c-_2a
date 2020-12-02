@@ -4,16 +4,31 @@
 #include <QObject>
 Extrait::Extrait()
 {
-  nom=" "; prenom=" " ; datedenaissance=" "; lieudenaissance=" " ; sexe=0 ; nomprenommere=" "; nomprenommere=" " ;datedeladeclaration=" "; situationf="";nomprenomdeclarant="" ; nomprenomofficier=" "; id=0;
+  nom=" "; prenom=" " ; datedenaissance=" "; lieudenaissance=" " ; sexe="  " ; nomprenommere=" "; nomprenommere=" " ;datedeladeclaration=" "; situationf="";nomprenomdeclarant="" ; nomprenomofficier=" "; id=0;
 }
 
-Extrait::Extrait(QString nom,QString prenom ,QString datedenaissance,QString lieudenaissance,int sexe,QString nomprenompere,QString nomprenommere,QString datedeladeclaration,QString situationf,QString nomprenomdeclarant,QString nomprenomofficier,int id)
-{ this->nom=nom; this->prenom=prenom ; this->datedenaissance=datedenaissance ; this->lieudenaissance=lieudenaissance;this->sexe=sexe ; this->nomprenompere=nomprenompere ; this->nomprenommere=nomprenommere ; this->datedeladeclaration=datedeladeclaration; this->situationf=situationf ; this->nomprenomdeclarant=nomprenomdeclarant ;this->nomprenomofficier=nomprenomofficier; this->id=id;}
+Extrait::Extrait(QString nom,QString prenom ,QString datedenaissance,QString lieudenaissance,QString sexe,QString nomprenompere,QString nomprenommere,QString datedeladeclaration,QString situationf,QString nomprenomdeclarant,QString nomprenomofficier,int id)
+{
+    this->nom=nom;
+    this->prenom=prenom ;
+    this->datedenaissance=datedenaissance ;
+    this->lieudenaissance=lieudenaissance;
+    this->sexe=sexe ;
+    this->nomprenompere=nomprenompere ;
+    this->nomprenommere=nomprenommere ;
+    this->datedeladeclaration=datedeladeclaration;
+    this->situationf=situationf ;
+    this->nomprenomdeclarant=nomprenomdeclarant ;
+    this->nomprenomofficier=nomprenomofficier;
+    this->id=id;
+}
+
+
 QString Extrait::getnom(){return  nom;}
 QString Extrait::getprenom(){return prenom;}
 QString Extrait::getdatedenaissance(){return datedenaissance;}
 QString Extrait::getlieudenaissance(){return lieudenaissance;}
-int Extrait::getsexe(){return sexe;}
+QString Extrait::getsexe(){return sexe;}
 QString Extrait::getnomprenompere(){return nomprenompere;}
 QString Extrait::getnomprenommere(){return nomprenommere ;}
 QString Extrait::getdatedeladeclaration(){return datedeladeclaration;}
@@ -25,7 +40,7 @@ void Extrait::setnom(QString nom){this->nom=nom;}
 void Extrait::setprenom(QString prenom){this->prenom=prenom;}
 void Extrait::setdatedenaissance(QString datedenaissance){this->datedenaissance=datedenaissance;}
 void Extrait::setlieudenaissance(QString lieudenaissance){this->lieudenaissance=lieudenaissance;}
-void Extrait::setsexe(int sexe){this->sexe=sexe;}
+void Extrait::setsexe(QString sexe){this->sexe=sexe;}
 void Extrait::setnomprenompere(QString nomprenompere){this->nomprenompere=nomprenompere;}
 void Extrait::setnomprenommere(QString nomprenommere){this->nomprenommere=nomprenommere;}
 void Extrait::setdatedeladeclaration(QString datedeladeclaration){this->datedeladeclaration=datedeladeclaration;}
@@ -37,13 +52,12 @@ void Extrait::setid(int id){this->id=id;}
 
 bool Extrait::ajouter()
 {
-    QString sexe_string= QString::number(sexe);
-    QString id_string= QString::number(id);
+
 
     QSqlQuery query;
 
-         query.prepare("INSERT INTO Extrait (nom, prenom,datedenaissance , lieudenaissance,sexe,nomprenompere,situationf,nomprenomdeclarant,nomprenomofficier,nomprenommere,datedeclaration,id) "
-                       "VALUES (:sexe, :forename, :surname , :datedenaissance,:lieudenaissance,:nomprenompere,:nomprenommere,:datedeladeclaration,:situationf,:nomprenomdeclarant,:nomprenomofficieR,:id)");
+         query.prepare("INSERT INTO Extrait (nom, prenom,datedenaissance , lieudenaissance,sexe,nomprenompere,nomprenommere,datedeclaration,situationf,nomprenomdeclarant,nomprenomofficier,id) "
+                       "VALUES (:forename, :surname , :datedenaissance,:lieudenaissance,:sexe, :nomprenompere,:nomprenommere,:datedeladeclaration,:situationf,:nomprenomdeclarant,:nomprenomofficier,:id)");
 
          query.bindValue(":forename", nom);
          query.bindValue(":surname", prenom);
@@ -51,27 +65,42 @@ bool Extrait::ajouter()
          query.bindValue(":lieudenaissance",lieudenaissance);
          query.bindValue(":nomprenompere",nomprenompere);
          query.bindValue(":nomprenommere",nomprenommere);
-         query.bindValue(":sexe",sexe_string);
+         query.bindValue(":sexe",sexe);
          query.bindValue(":datedeladeclaration",datedeladeclaration);
          query.bindValue(":situationf",situationf);
          query.bindValue(":nomprenomdeclarant",nomprenomdeclarant);
          query.bindValue(":nomprenomofficier",nomprenomofficier);
-         query.bindValue(":id", id_string);
+         query.bindValue(":id", id);
         return query.exec();
 
 }
-bool Extrait::modifier(int id)
+bool Extrait::modifier()
 {
     QSqlQuery query;
-    QString sexe_string= QString::number(sexe);
-    QString id_string= QString::number(id);
 
 
-    query.prepare(" update Extraits set NOM='"+nom+"',PRENOM='"+prenom+"',DATEDENAISSANCE='"+datedenaissance+"',LIEUDENAISSANCE='"+lieudenaissance+"',SEXE='"+sexe_string+"',NOMPRENOMPERE='"+nomprenompere+"',NOMPRENOMMERE='"+nomprenommere+"',DATEDELADECLARATION='"+datedeladeclaration+"',SITUATIONF='"+situationf+"',NOMPRENOMDECLARANT='"+nomprenomdeclarant+"',NOMPRENOMOFFICIER='"+nomprenomofficier+"' where ID='"+id_string+"'");
-             return query.exec();
+         query.prepare("update Extrait set nom=:forename, prenom=:surname, datedenaissance=:datedenaissance "
+                       ",lieudenaissance=:lieudenaissance,sexe=:sexe,nomprenompere=:nomprenommere,nomprenommere=:nomprenommere"
+                       ",datedeclaration=:datedeladeclaration,situationf=:situationf,nomprenomdeclarant=:nomprenomdeclarant"
+                       ",nomprenomofficier=:nomprenomofficier where id=:id");
+
+         query.bindValue(":forename", nom);
+         query.bindValue(":surname", prenom);
+         query.bindValue(":datedenaissance",datedenaissance);
+         query.bindValue(":lieudenaissance",lieudenaissance);
+         query.bindValue(":nomprenompere",nomprenompere);
+         query.bindValue(":nomprenommere",nomprenommere);
+         query.bindValue(":sexe",sexe);
+         query.bindValue(":datedeladeclaration",datedeladeclaration);
+         query.bindValue(":situationf",situationf);
+         query.bindValue(":nomprenomdeclarant",nomprenomdeclarant);
+         query.bindValue(":nomprenomofficier",nomprenomofficier);
+         query.bindValue(":id", id);
+        return query.exec();
 
 
 }
+
 QSqlQueryModel* Extrait::afficher()
 {
   QSqlQueryModel* model=new QSqlQueryModel();
@@ -93,3 +122,20 @@ QSqlQueryModel* Extrait::afficher()
 
   return  model;
 }
+
+QSqlQueryModel* Extrait::rechercher(QString colone,QString text)
+{
+     QSqlQueryModel* model=new QSqlQueryModel();
+
+     model->setQuery("SELECT * FROM extrait WHERE UPPER("+colone+") LIKE UPPER('"+text+"%')");
+
+     return model;
+}
+
+QSqlQueryModel*  Extrait::tri(QString colone, QString ordre)
+{
+QSqlQueryModel* model=new QSqlQueryModel();
+model->setQuery("select * from extrait order by "+colone+" "+ordre+"");
+return model;
+}
+

@@ -32,10 +32,10 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>40</y>
+     <x>40</x>
+     <y>10</y>
      <width>1031</width>
-     <height>571</height>
+     <height>651</height>
     </rect>
    </property>
    <property name="font">
@@ -67,7 +67,7 @@
     <set>Qt::ImhNone</set>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <property name="usesScrollButtons">
     <bool>false</bool>
@@ -91,14 +91,14 @@
     <widget class="QTabWidget" name="tabWidget_2">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>0</y>
-       <width>701</width>
-       <height>521</height>
+       <width>901</width>
+       <height>631</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -125,27 +125,17 @@
         <rect>
          <x>20</x>
          <y>0</y>
-         <width>661</width>
-         <height>471</height>
+         <width>861</width>
+         <height>621</height>
         </rect>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_5">
         <attribute name="title">
          <string>Ajouter</string>
         </attribute>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="geometry">
-          <rect>
-           <x>190</x>
-           <y>140</y>
-           <width>121</width>
-           <height>20</height>
-          </rect>
-         </property>
-        </widget>
         <widget class="QLineEdit" name="le_idd">
          <property name="geometry">
           <rect>
@@ -178,6 +168,11 @@
            <height>22</height>
           </rect>
          </property>
+         <property name="font">
+          <font>
+           <underline>false</underline>
+          </font>
+         </property>
          <property name="calendarPopup">
           <bool>false</bool>
          </property>
@@ -185,11 +180,16 @@
         <widget class="QPushButton" name="pb_ajouter">
          <property name="geometry">
           <rect>
-           <x>520</x>
-           <y>372</y>
+           <x>430</x>
+           <y>340</y>
            <width>91</width>
            <height>31</height>
           </rect>
+         </property>
+         <property name="font">
+          <font>
+           <underline>false</underline>
+          </font>
          </property>
          <property name="text">
           <string>Enregistrer</string>
@@ -236,6 +236,11 @@
            <width>121</width>
            <height>22</height>
           </rect>
+         </property>
+         <property name="font">
+          <font>
+           <underline>false</underline>
+          </font>
          </property>
          <property name="calendarPopup">
           <bool>false</bool>
@@ -434,6 +439,26 @@
           <string/>
          </property>
         </widget>
+        <widget class="QComboBox" name="cb_sexe">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>140</y>
+           <width>121</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Male</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Femelle</string>
+          </property>
+         </item>
+        </widget>
        </widget>
        <widget class="QWidget" name="tab_6">
         <attribute name="title">
@@ -442,11 +467,544 @@
         <widget class="QTableView" name="tableView">
          <property name="geometry">
           <rect>
-           <x>20</x>
-           <y>20</y>
-           <width>601</width>
-           <height>411</height>
+           <x>30</x>
+           <y>60</y>
+           <width>651</width>
+           <height>231</height>
           </rect>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="le_recherche">
+         <property name="geometry">
+          <rect>
+           <x>570</x>
+           <y>30</y>
+           <width>111</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_42">
+         <property name="geometry">
+          <rect>
+           <x>500</x>
+           <y>30</y>
+           <width>61</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>rechercher :l</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="cb_recherche">
+         <property name="geometry">
+          <rect>
+           <x>380</x>
+           <y>30</y>
+           <width>111</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>NOM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>PRENOM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DATEDENAISSANCE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LIEUDENAISSANCE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SEXE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMPERE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMMERE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DATEDECLARATION</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SITUATIONF</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMDECLARANT</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMOFFICIER</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ID</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLabel" name="le_sexe_3">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>480</y>
+           <width>47</width>
+           <height>14</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Sexe</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="prenom">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>390</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="cb_sexe_2">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>480</y>
+           <width>121</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>Male</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Femelle</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QLineEdit" name="lieun">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>450</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="nom">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>360</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_44">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>420</y>
+           <width>91</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Date de Naissance</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="pere">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>510</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QDateEdit" name="daten">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>420</y>
+           <width>121</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <underline>false</underline>
+          </font>
+         </property>
+         <property name="calendarPopup">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_45">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>390</y>
+           <width>47</width>
+           <height>14</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Prénom</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_46">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>450</y>
+           <width>101</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Lieu de Naissance</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="le_nom_5">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>360</y>
+           <width>47</width>
+           <height>14</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nom</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_49">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>510</y>
+           <width>121</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nom , Prénom du Père</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="situationf">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>420</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_87">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>450</y>
+           <width>141</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nom , Prénom du Déclarant</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="mere">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>360</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_88">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>420</y>
+           <width>121</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Situation familiale</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="declarant">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>450</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QDateEdit" name="declaration">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>390</y>
+           <width>121</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <underline>false</underline>
+          </font>
+         </property>
+         <property name="calendarPopup">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_89">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>480</y>
+           <width>141</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nom , Prénom de l'Officier</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_90">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>360</y>
+           <width>131</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Nom , Prénom de la Mère</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_91">
+         <property name="geometry">
+          <rect>
+           <x>340</x>
+           <y>390</y>
+           <width>121</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Date de la Déclaration</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="officier">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>480</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="idd2">
+         <property name="geometry">
+          <rect>
+           <x>350</x>
+           <y>320</y>
+           <width>121</width>
+           <height>20</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="le_id_6">
+         <property name="geometry">
+          <rect>
+           <x>310</x>
+           <y>320</y>
+           <width>111</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>id</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="modifiextrait">
+         <property name="geometry">
+          <rect>
+           <x>630</x>
+           <y>530</y>
+           <width>75</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Modifier</string>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="colone_tri">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>30</y>
+           <width>101</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>NOM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>PRENOM</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DATEDENAISSANCE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LIEUDENAISSANCE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SEXE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMPERE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMMERE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DATEDECLARATION</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SITUATIONF</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMDECLARANT</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>NOMPRENOMOFFICIER</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ID</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QComboBox" name="ordre_tri">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>30</y>
+           <width>111</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <item>
+          <property name="text">
+           <string>ASC</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DESC</string>
+          </property>
+         </item>
+        </widget>
+        <widget class="QPushButton" name="button_tri">
+         <property name="geometry">
+          <rect>
+           <x>260</x>
+           <y>30</y>
+           <width>75</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>tri</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="imprimer_3">
+         <property name="geometry">
+          <rect>
+           <x>720</x>
+           <y>360</y>
+           <width>75</width>
+           <height>23</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>imprimer</string>
          </property>
         </widget>
        </widget>
@@ -594,11 +1152,14 @@
         <widget class="QLineEdit" name="le_idd_2">
          <property name="geometry">
           <rect>
-           <x>310</x>
+           <x>210</x>
            <y>40</y>
            <width>121</width>
            <height>20</height>
           </rect>
+         </property>
+         <property name="text">
+          <string/>
          </property>
         </widget>
         <widget class="QLineEdit" name="le_nomdeclarant_2">
@@ -882,6 +1443,11 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <underline>false</underline>
+        </font>
+       </property>
        <property name="editable">
         <bool>false</bool>
        </property>
@@ -919,6 +1485,11 @@
          <width>121</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <underline>false</underline>
+        </font>
        </property>
        <property name="calendarPopup">
         <bool>false</bool>
@@ -989,6 +1560,11 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <underline>false</underline>
+        </font>
+       </property>
        <property name="calendarPopup">
         <bool>false</bool>
        </property>
@@ -1014,6 +1590,11 @@
          <width>121</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <underline>false</underline>
+        </font>
        </property>
        <property name="calendarPopup">
         <bool>false</bool>
@@ -1332,9 +1913,9 @@
     <widget class="QTabWidget" name="tabWidget_4">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>0</y>
-       <width>511</width>
+       <width>531</width>
        <height>531</height>
       </rect>
      </property>
@@ -1358,7 +1939,7 @@
       <bool>false</bool>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -1376,45 +1957,6 @@
       <attribute name="title">
        <string>Ajouter</string>
       </attribute>
-      <widget class="QLabel" name="label_33">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>220</y>
-         <width>241</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>L'immeuble est-il assujetti au droit de maintien?</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_48">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>160</y>
-         <width>131</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#5555ff;&quot;&gt;Services offerts:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_35">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>310</y>
-         <width>221</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Chaussées goudronnées ?</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="imprimer">
        <property name="geometry">
         <rect>
@@ -1439,19 +1981,6 @@
         <string>Imprimer</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_37">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>370</y>
-         <width>241</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Evacuations des eaux usées ?</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_53">
        <property name="geometry">
         <rect>
@@ -1465,30 +1994,7 @@
         <string>L'assiette de la taxe</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_eclairage">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>280</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_34">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>250</y>
-         <width>231</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Nettoiement ?</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_montant">
+      <widget class="QLineEdit" name="montant_loyer">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -1498,40 +2004,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_evacuation">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>370</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_38">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>400</y>
-         <width>191</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Evacuations des eaux pluviales ?</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_maintien">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>220</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_superficie">
+      <widget class="QLineEdit" name="superficie">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -1554,64 +2027,11 @@
         <string>(m2)</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_numT1">
+      <widget class="QLineEdit" name="numT">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>190</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_trottoir">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>340</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_evep">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>400</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>280</y>
-         <width>231</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Eclairage public ?</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_nettoiement">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>250</y>
-         <width>113</width>
-         <height>20</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_chausse">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>310</y>
+         <x>90</x>
+         <y>220</y>
          <width>113</width>
          <height>20</height>
         </rect>
@@ -1654,19 +2074,6 @@
         <string>Return</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_36">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>340</y>
-         <width>161</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Dallage des trottoirs ?</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_57">
        <property name="geometry">
         <rect>
@@ -1693,7 +2100,7 @@
         <string>Montant du loyer annuel</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="recalculer">
+      <widget class="QPushButton" name="Ajouter">
        <property name="geometry">
         <rect>
          <x>430</x>
@@ -1733,7 +2140,7 @@
       <widget class="QLabel" name="label_41">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>90</x>
          <y>190</y>
          <width>201</width>
          <height>16</height>
@@ -1741,6 +2148,52 @@
        </property>
        <property name="text">
         <string>Num taxe</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_43">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>190</y>
+         <width>191</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date de la création</string>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="date_creation">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>220</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_48">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>280</y>
+         <width>181</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Montant de la taxe</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="montant_taxe">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>310</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -1752,9 +2205,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>10</y>
-         <width>481</width>
-         <height>491</height>
+         <y>80</y>
+         <width>511</width>
+         <height>421</height>
         </rect>
        </property>
       </widget>
@@ -1795,11 +2248,233 @@
         <string>L'assiette de la taxe</string>
        </property>
       </widget>
+      <widget class="QLineEdit" name="le_recherche_2">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>30</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_50">
+       <property name="geometry">
+        <rect>
+         <x>316</x>
+         <y>30</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>rechercher</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="cb_recherche_2">
+       <property name="geometry">
+        <rect>
+         <x>201</x>
+         <y>30</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>NUMT</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SUPERFICIE</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MONTANT_LOYER</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>DATE_CREATION</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>MONTANT_TAXE</string>
+        </property>
+       </item>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_9">
       <attribute name="title">
        <string>Modifier</string>
       </attribute>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>231</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Nettoiement ?</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_nettoiement">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>110</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_evacuation">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>230</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_37">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>230</y>
+         <width>241</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Evacuations des eaux usées ?</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_maintien">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>80</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_trottoir">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>200</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_chausse">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>170</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_33">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>241</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>L'immeuble est-il assujetti au droit de maintien?</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>140</y>
+         <width>231</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Eclairage public ?</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_eclairage">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>140</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_38">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>260</y>
+         <width>191</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Evacuations des eaux pluviales ?</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_evep">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>260</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_35">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>170</y>
+         <width>221</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Chaussées goudronnées ?</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_36">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>200</y>
+         <width>161</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Dallage des trottoirs ?</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </widget>
@@ -1808,7 +2483,6 @@
  <tabstops>
   <tabstop>tabWidget_2</tabstop>
   <tabstop>tabWidget_3</tabstop>
-  <tabstop>lineEdit</tabstop>
   <tabstop>tableView</tabstop>
   <tabstop>le_datenaissance</tabstop>
   <tabstop>pb_ajouter</tabstop>

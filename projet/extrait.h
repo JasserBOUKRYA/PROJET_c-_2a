@@ -8,12 +8,12 @@ class Extrait
 {
 public:
     Extrait();
-    Extrait(QString, QString, QString, QString, int , QString, QString, QString, QString, QString, QString,int);
+    Extrait(QString, QString, QString, QString, QString , QString, QString, QString, QString, QString, QString,int);
     QString getnom();
     QString getprenom();
     QString getdatedenaissance();
     QString getlieudenaissance();
-    int getsexe();
+    QString getsexe();
     QString getnomprenompere();
     QString getnomprenommere();
     QString getdatedeladeclaration();
@@ -25,7 +25,7 @@ public:
     void setprenom(QString);
     void setdatedenaissance(QString);
     void setlieudenaissance(QString);
-    void setsexe(int);
+    void setsexe(QString);
     void setnomprenompere(QString);
     void setnomprenommere(QString);
     void setdatedeladeclaration(QString);
@@ -34,12 +34,14 @@ public:
     void setnomprenomofficier(QString);
     void setid(int);
     bool ajouter();
+    bool modifier();
     bool supprimer(int);
+    QSqlQueryModel* tri(QString,QString);
     QSqlQueryModel* afficher();
-    bool modifier(int);
+    QSqlQueryModel* rechercher(QString,QString);
 
 private:
-    int sexe,id;
-    QString nom, prenom , datedenaissance , lieudenaissance,nomprenompere,nomprenommere,datedeladeclaration,situationf,nomprenomdeclarant,nomprenomofficier;
+    int id;
+    QString nom,sexe, prenom , datedenaissance , lieudenaissance,nomprenompere,nomprenommere,datedeladeclaration,situationf,nomprenomdeclarant,nomprenomofficier;
 };
 #endif // EXTRAIT_H
