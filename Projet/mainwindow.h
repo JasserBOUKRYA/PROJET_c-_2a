@@ -10,6 +10,8 @@
 #include <QPrintDialog>
 #include <QAbstractItemView>
 #include <QRegExpValidator>
+#include  <QTextCursor>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -54,11 +56,14 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_tableView_5_activated(const QModelIndex &index);
+
+    void on_pushButton_7_clicked();
+
 private:
     Ui::MainWindow *ui;
     Employee E_tmp, E1_tmp;
     Bon B_tmp;
-
 
 };
 #endif // MAINWINDOW_H

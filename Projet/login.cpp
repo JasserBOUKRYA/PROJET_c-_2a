@@ -46,7 +46,10 @@ int Login::on_pushButton_clicked()
         }
 
        else
-            return 0;
+        {
+            QMessageBox::critical(nullptr ,QObject::tr("Erreur"), QObject::tr("password et matricule incorrects"));
+             return 0;
+        }
     }
 
     else

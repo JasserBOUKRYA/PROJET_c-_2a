@@ -12,6 +12,8 @@
 #include <QPalette>
 #include <QFileDialog>
 #include <QSortFilterProxyModel>
+#include <QTextDocument>
+#include <QPdfWriter>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -75,6 +77,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView_5->setPalette(QPalette(Qt::lightGray));
     ui->tableView_6->setPalette(QPalette(Qt::lightGray));
     ui->tableView_7->setPalette(QPalette(Qt::lightGray));
+
+    ui->progressBar->setValue(0);
 
      changecolor();
 }
@@ -530,7 +534,7 @@ void MainWindow::on_tableView_7_activated(const QModelIndex &index)
         while(query.next())
         {
             ui->lineEdit_44->setText(query.value(0).toString());
-            ui->dateEdit_6->setDate(query.value(7).toDate());
+            ui->dateEdit_6->setDate(query.value(1).toDate());
             ui->lineEdit_43->setText(query.value(2).toString());
             ui->lineEdit_45->setText(query.value(3).toString());
             ui->lineEdit_42->setText(query.value(4).toString());
@@ -675,6 +679,7 @@ void MainWindow::changecolor()
     ui->pushButton_3->setStyleSheet("background-color : skyblue");
     ui->pushButton_6->setStyleSheet("background-color : skyblue");
     ui->pushButton_14->setStyleSheet("background-color : skyblue");
+    ui->pushButton_7->setStyleSheet("background-color : skyblue");
 
 
 }
@@ -685,13 +690,45 @@ void MainWindow::on_pushButton_6_clicked()
     QPrinter printer;
     QPrintDialog dialog(&printer,this);
     dialog.setWindowTitle("imprimer un document");
-    if(ui->tableView_5)
-        dialog.addEnabledOption(QAbstractPrintDialog::PrintSelection);
 
     if (dialog.exec() != QDialog::Accepted)
-    {
         return;
-    }
+
+
+    ui->textEdit->print(&printer);
+
 }
 
 
+
+void MainWindow::on_tableView_5_activated(const QModelIndex &index)
+{
+    QString val =ui->tableView_5->model()->data(index).toString();
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Bons WHERE numbon='"+val+"'");
+    if (query.exec())
+    {
+        int i=0;
+        while(query.next() and i==0)
+        {
+            ui->textEdit->append(query.value(0).toString());
+            ui->textEdit->append(query.value(1).toString());
+            ui->textEdit->append(query.value(2).toString());
+            ui->textEdit->append(query.value(3).toString());
+            ui->textEdit->append(query.value(4).toString());
+            ui->textEdit->append("--------------\n");
+            i=1;
+        }
+
+         }
+
+        else {
+                QMessageBox::critical(this,tr("error::"), query.lastError().text());
+        }
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    ui->textEdit->clear();
+    ui->textEdit->setAlignment(Qt::AlignCenter);
+}

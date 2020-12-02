@@ -36,10 +36,5 @@ int main(int argc, char *argv[])
 
     }
 
-    else if (L.on_pushButton_clicked() == 0)
-        QMessageBox::critical(nullptr ,QObject::tr("Erreur"), QObject::tr("password et matricule incorrects"));
-
-
-
     return a.exec();
 }
