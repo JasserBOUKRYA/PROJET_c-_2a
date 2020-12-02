@@ -64,23 +64,6 @@ QSqlQueryModel * Employee::afficher()
     return model;
 }
 
-QSqlQueryModel * Employee::affichertrinom()
-
-{
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT * FROM employee ORDER BY nom");
-
-    return model;
-}
-
-QSqlQueryModel * Employee::affichertrimatricule()
-
-{
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT * FROM employee ORDER BY matricule");
-
-    return model;
-}
 
 bool Employee::supprimer(QString matricule)
 {

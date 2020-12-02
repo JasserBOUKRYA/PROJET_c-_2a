@@ -36,10 +36,6 @@ private slots:
 
     void on_pushButton_5_clicked();
 
-    void on_pushButton_21_clicked();
-
-    void on_pushButton_22_clicked();
-
     void on_pushButton_11_clicked();
 
     void on_pushButton_12_clicked();
@@ -53,10 +49,6 @@ private slots:
     void on_tableView_7_activated(const QModelIndex &index);
 
     void on_pushButton_15_clicked();
-
-    void on_pushButton_7_clicked();
-
-    void on_pushButton_8_clicked();
 
     void changecolor();
 

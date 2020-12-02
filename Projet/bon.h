@@ -27,8 +27,6 @@ public:
     QSqlQueryModel*    afficher();
     bool supprimer(QString);
     bool  rechercher( QString );
-    QSqlQueryModel*    affichertrinumbon();
-    QSqlQueryModel*    affichertrinbrpoteau();
 
 private:
     QString numbon, nomvoie, localite;

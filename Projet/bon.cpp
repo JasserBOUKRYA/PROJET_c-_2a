@@ -49,24 +49,6 @@ QSqlQueryModel * Bon::afficher()
     return model;
 }
 
-QSqlQueryModel * Bon::affichertrinumbon()
-
-{
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT * FROM Bons ORDER BY numbon");
-
-    return model;
-}
-
-QSqlQueryModel * Bon::affichertrinbrpoteau()
-
-{
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT * FROM Bons ORDER BY nbrpoteau");
-
-    return model;
-}
-
 
 bool Bon::supprimer(QString numbon)
 {

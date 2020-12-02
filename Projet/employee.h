@@ -34,8 +34,6 @@ public:
     QSqlQueryModel*    afficher();
     bool supprimer(QString);
     bool  rechercher( QString );
-    QSqlQueryModel*    affichertrinom();
-    QSqlQueryModel*    affichertrimatricule();
 
 
 private:
