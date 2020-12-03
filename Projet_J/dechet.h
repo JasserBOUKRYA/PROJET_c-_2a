@@ -9,20 +9,20 @@ class Dechet
 {
 private:
 
-   int cin;
+
    QString matricule,destination,temps_D,date_A;
 
 public:
     Dechet();
-     Dechet(int,QString,QString,QString,QString);
+     Dechet(QString,QString,QString,QString);
 
-     int getCin();
+
      QString getMatricule();
      QString getTemps_D();
      QString getDate_A();
      QString getDestination();
 
-void setCin(int);
+
 void setMtricule(QString);
 void setTemps_D(QString);
 void setDate_A(QString);
@@ -32,7 +32,8 @@ bool ajouter();
 
 QSqlQueryModel* afficher();
 bool supprimer(QString);
-bool modifier_D(int);
+QSqlQueryModel* rechercher(QString,QString);
+QSqlQueryModel* afficher_tri_dest();
 };
 
 #endif // DECHET_H

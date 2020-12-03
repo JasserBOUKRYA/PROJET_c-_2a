@@ -7,13 +7,13 @@
 class Permis
 {
 private:
-    int cinp,tel,nbr,terrain,plancher,hauteur;
+    int cin,tel,nbr,terrain,plancher,hauteur;
        QString nom,prenom,datep,sexe,localite,bene,archi,nature;
 
 public:
     Permis();
     Permis(int,int,int,int,int,int,QString,QString,QString,QString,QString,QString,QString,QString);
-    int getCinp();
+    int getCin();
        int getTel();
        int getNbr();
        int getTerrain();
@@ -28,7 +28,7 @@ public:
            QString getArchi();
            QString getNature();
 
-           void setCinp(int);
+           void setCin(int);
                void setTel(int);
                void setNbr(int);
                void setTerrain(int);
@@ -46,7 +46,11 @@ public:
                 bool ajouter_P();
                 bool supprimer_P(int);
                 QSqlQueryModel* afficher_P();
-               bool modifier(int);
+                QSqlQueryModel* rechercher_P(QString,QString);
+                //QSqlQueryModel* afficher_tri_cin();
+                QSqlQueryModel* afficher_tri_nom();
+                QSqlQueryModel* tri(QString,QString);
+
 };
 
 #endif // PERMIS_H

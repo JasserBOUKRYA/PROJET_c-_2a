@@ -1,6 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
 #include "dechet.h"
 #include "permis.h"
@@ -31,11 +30,29 @@ private slots:
 
     void on_pb_suppPERMIS_clicked();
 
+   void on_tab_dechet_activated(const QModelIndex &index);
+
+   void on_pb_MODIFIER_clicked();
+
    void on_pb_modifier_clicked();
 
-   void on_pb_ajouter1_2_clicked();
+   void on_tab_permis_activated(const QModelIndex &index);
 
-   void on_tab_dechet_activated(const QModelIndex &index);
+   void on_le_recherche_textChanged(const QString &arg1);
+
+   void on_le_recherche_p_textChanged(const QString &arg1);
+
+   void on_pb_tri_cin_clicked();
+
+   void on_pb_imprimer_clicked();
+
+   void on_pb_pdf_clicked();
+
+
+
+   void on_tabWidget2_tabBarClicked(int index);
+
+   void on_tabWidget_2_tabBarClicked(int index);
 
 private:
     Ui::MainWindow *ui;
