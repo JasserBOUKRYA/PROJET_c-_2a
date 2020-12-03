@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "mainwindow.h"
+#include <QSound>
 
 namespace Ui {
 class Login;
@@ -21,6 +22,7 @@ public slots:
 
 private:
     Ui::Login *ui;
+    QSound *son;
 };
 
 #endif // LOGIN_H

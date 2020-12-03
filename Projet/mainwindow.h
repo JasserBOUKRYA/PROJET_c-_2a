@@ -11,6 +11,7 @@
 #include <QAbstractItemView>
 #include <QRegExpValidator>
 #include  <QTextCursor>
+#include<QSound>
 
 
 QT_BEGIN_NAMESPACE
@@ -68,6 +69,7 @@ private:
     Ui::MainWindow *ui;
     Employee E_tmp, E1_tmp;
     Bon B_tmp;
+    QSound *son;
 
 };
 #endif // MAINWINDOW_H

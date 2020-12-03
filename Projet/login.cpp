@@ -9,6 +9,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
+    son=new QSound(":/sons/cassette-player-button-3.wav");
 
     QPixmap pix("C:/Users/PCONE/Desktop/logo2.png");
     ui->label_3->setPixmap(pix);
@@ -22,6 +23,7 @@ Login::~Login()
 
 int Login::on_pushButton_clicked()
 {
+    son->play();
     QString matricule, password;
     matricule = ui->lineEdit->text();
     password = ui->lineEdit_2->text();

@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    son=new QSound(":/sons/cassette-player-button-3.wav");
+
     QRegExp chaine("[a-zA-Z]+$");
     QRegExpValidator *vali = new QRegExpValidator(chaine, this);
 
@@ -93,6 +95,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+     son->play();
 
     QString matricule = ui->lineEdit->text();
     QString nom = ui->lineEdit_2->text();
@@ -160,6 +163,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
+    son->play();
     QString matricule= ui->lineEdit_8->text();
 
           QMessageBox msgBox;
@@ -221,13 +225,13 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QSound bells("C:/Users/PCONE/Documents/GestionEmployee/cassette-player-button-3.wav");
-            bells.play();
+    son->play();
     close();
 }
 
 void MainWindow::on_tableView_2_activated(const QModelIndex &index)
 {
+    son->play();
     QString val =ui->tableView_2->model()->data(index).toString();
     QSqlQuery query;
     query.prepare("SELECT * FROM employee WHERE matricule='"+val+"' or nom='"+val+"' or prenom='"+val+"' or cin='"+val+"' or telephone='"+val+"' or email='"+val+"' or adresse='"+val+"' or to_char(date_naissance)='"+val+"'");
@@ -256,6 +260,7 @@ void MainWindow::on_tableView_2_activated(const QModelIndex &index)
 
 void MainWindow::on_pushButton_4_clicked()
 {
+    son->play();
      QString matricule, nom, prenom, cin, telephone, email, adresse;
      QDate date_naissance;
      matricule=ui->lineEdit_15->text();
@@ -326,6 +331,7 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_pushButton_5_clicked()
 {
+    son->play();
     QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
                                                         tr("Excel Files (*.xls)"));
         if (fileName.isEmpty())
@@ -362,6 +368,7 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::on_pushButton_11_clicked()
 {
+    son->play();
     QString numbon = ui->lineEdit_16->text();
     QString nomvoie = ui->lineEdit_35->text();
     QDate datebon = ui->dateEdit->date();
@@ -403,14 +410,13 @@ void MainWindow::on_pushButton_11_clicked()
 
 void MainWindow::on_pushButton_12_clicked()
 {
-    QSound bells("C:/Users/PCONE/Documents/GestionEmployee/cassette-player-button-3.wav");
-            bells.play();
-
+    son->play();
     close();
 }
 
 void MainWindow::on_tableView_6_activated(const QModelIndex &index)
 {
+    son->play();
     QString val =ui->tableView_6->model()->data(index).toString();
     QSqlQuery query;
     query.prepare("SELECT * FROM Bons WHERE numbon='"+val+"' or to_char(datebon)='"+val+"' or to_char(nbrpoteau)='"+val+"' or nomvoie='"+val+"' or localite='"+val+"'");
@@ -433,6 +439,7 @@ void MainWindow::on_tableView_6_activated(const QModelIndex &index)
 
 void MainWindow::on_pushButton_13_clicked()
 {
+    son->play();
     QString numbon = ui->lineEdit_17->text();
     int quantite_a_installe = ui->lineEdit_40->text().toInt();
     int nbrpoteau = ui->lineEdit_39->text().toInt();
@@ -466,6 +473,7 @@ void MainWindow::on_pushButton_13_clicked()
 
 void MainWindow::on_pushButton_14_clicked()
 {
+    son->play();
     QString numbon= ui->lineEdit_41->text();
 
           QMessageBox msgBox;
@@ -527,6 +535,7 @@ void MainWindow::on_pushButton_14_clicked()
 
 void MainWindow::on_tableView_7_activated(const QModelIndex &index)
 {
+    son->play();
     QString val =ui->tableView_7->model()->data(index).toString();
     QSqlQuery query;
     query.prepare("SELECT * FROM Bons WHERE numbon='"+val+"' or to_char(datebon)='"+val+"' or to_char(nbrpoteau)='"+val+"' or nomvoie='"+val+"' or localite='"+val+"'");
@@ -553,6 +562,7 @@ void MainWindow::on_tableView_7_activated(const QModelIndex &index)
 
 void MainWindow::on_pushButton_15_clicked()
 {
+    son->play();
     QString numbon, nomvoie, localite;
     QDate datebon;
     int nbrpoteau;
@@ -691,6 +701,7 @@ void MainWindow::changecolor()
 void MainWindow::on_pushButton_6_clicked()
 {
 
+    son->play();
     QPrinter printer;
     QPrintDialog dialog(&printer,this);
     dialog.setWindowTitle("imprimer un document");
@@ -706,6 +717,7 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::on_tableView_5_activated(const QModelIndex &index)
 {
+    son->play();
     QString val =ui->tableView_5->model()->data(index).toString();
     QSqlQuery query;
     query.prepare("SELECT * FROM Bons WHERE numbon='"+val+"'");
@@ -732,12 +744,14 @@ void MainWindow::on_tableView_5_activated(const QModelIndex &index)
 
 void MainWindow::on_pushButton_7_clicked()
 {
+    son->play();
     ui->textEdit->clear();
     ui->textEdit->setAlignment(Qt::AlignCenter);
 }
 
 void MainWindow::on_pushButton_8_clicked()
 {
+    son->play();
     Rechercher R;
     R.setModal(true);
     R.exec();
@@ -745,6 +759,7 @@ void MainWindow::on_pushButton_8_clicked()
 
 void MainWindow::on_pushButton_9_clicked()
 {
+    son->play();
     Recherchebon RB;
     RB.setModal(true);
     RB.exec();
