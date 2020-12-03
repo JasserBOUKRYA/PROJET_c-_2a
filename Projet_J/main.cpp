@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include "connection.h"
+#include <QFile>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -10,6 +11,11 @@ int main(int argc, char *argv[])
     Connection c;
     bool test=c.createConnexion();
     MainWindow w;
+    QFile styleSheetFile(":/styleSheet/Integrid.qss");
+        styleSheetFile.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(styleSheetFile.readAll());
+        a.setStyleSheet(styleSheet);
+
     if(test)
     {w.show();
         QMessageBox::information(nullptr, QObject::tr("database is open"),

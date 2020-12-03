@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include "dechet.h"
 #include "permis.h"
+#include <QSound>
 QT_BEGIN_NAMESPACE
 namespace Ui
 
@@ -54,10 +55,15 @@ private slots:
 
    void on_tabWidget_2_tabBarClicked(int index);
 
+
+
+   void on_pb_tri_dest_clicked();
+
 private:
     Ui::MainWindow *ui;
  Dechet D1;
  Permis P11;
+ QSound * son;
 };
 
 #endif // MAINWINDOW_H

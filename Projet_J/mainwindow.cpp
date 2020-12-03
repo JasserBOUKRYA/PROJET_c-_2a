@@ -20,7 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->setupUi(this);
+    son=new QSound(":/son/click.wav");
 
+ui->le_matricule_D->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_cinP->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_tel->setValidator(new QIntValidator(0, 99999999, this));
     ui->le_nbr->setValidator(new QIntValidator(0, 9999999, this));
@@ -41,13 +43,14 @@ MainWindow::~MainWindow()
 /////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_pb_ajouter1_clicked()
 {
-
+    son->play();
+int matriculeD=ui->le_matricule_D->text().toInt();
    QString matricule=ui->le_matricule->text();
    QString date=ui->le_date->text();
    QString tempsD=ui->le_temps->text();
    QString destination=ui->le_cite->text();
 
-   Dechet D1(matricule,tempsD,date,destination);
+   Dechet D1(matriculeD,matricule,tempsD,date,destination);
 
    bool test=D1.ajouter();
     if (test)
@@ -72,7 +75,7 @@ void MainWindow::on_pb_quitter_clicked()
 }
 /////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_pb_supp_clicked()
-{
+{son->play();
     Dechet D;
     D.setDestination(ui->le_supp->text());
     bool test=D.supprimer(D.getDestination());
@@ -93,7 +96,7 @@ void MainWindow::on_pb_supp_clicked()
 }
 ///////////////////////////////////////////////////////////////////////
 void MainWindow::on_pb_ajouterPermis_clicked()
-{
+{son->play();
 
     int cin=ui->le_cinP->text().toInt();
     int tel=ui->le_tel->text().toInt();
@@ -113,7 +116,7 @@ void MainWindow::on_pb_ajouterPermis_clicked()
 
    Permis P1(cin ,tel ,nbr ,terrain ,plancher ,hauteur ,nom ,prenom ,datep ,sexe,localite ,bene ,archi ,nature );
 
-////////////////////////////////////////////////////////////////////////////
+
     bool test=P1.ajouter_P();
      if (test)
      {
@@ -132,7 +135,7 @@ void MainWindow::on_pb_ajouterPermis_clicked()
 }
 ////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_pb_suppPERMIS_clicked()
-{
+{son->play();
     Permis P1;
 
     P1.setCin(ui->le_suppPERMIS->text().toInt());
@@ -158,7 +161,7 @@ void MainWindow::on_tab_dechet_activated(const QModelIndex &index)
     QString val =ui->tab_dechet->model()->data(index).toString();
        QSqlQuery query;
 
-  query.prepare("SELECT * FROM DECHETS WHERE MATRICULE='"+val+"' or DATE_A='"+val+"' or TEMPS_A='"+val+"'or DESTINATION='"+val+"'");
+  query.prepare("SELECT * FROM DECHETS WHERE MATRICULE='"+val+"' or DATE_A='"+val+"' or TEMPS_A='"+val+"'or DESTINATION='"+val+"' or MATRICULED='"+val+"'");
        if (query.exec())
        {
 
@@ -169,6 +172,7 @@ void MainWindow::on_tab_dechet_activated(const QModelIndex &index)
                ui->le_temps_2->setText(query.value(1).toString());
                ui->le_date_2->setText(query.value(2).toString());
                ui->le_cite_2->setText(query.value(3).toString());
+               ui->le_matricule_D2->setText(query.value(4).toString());
 
               }
 
@@ -181,11 +185,11 @@ void MainWindow::on_tab_dechet_activated(const QModelIndex &index)
 //////////////////////////////////////////////////////////////////////////////
 
 void MainWindow::on_pb_MODIFIER_clicked()
-{
+{son->play();
        QString matricule,destination,temps_D,date_A;
+int matriculeD;
 
-
-
+matriculeD=ui->le_matricule_D2->text().toInt();
        matricule=ui->le_matricule_2->text();
        destination=ui->le_cite_2->text();
        temps_D=ui->le_temps_2->text();
@@ -194,8 +198,8 @@ void MainWindow::on_pb_MODIFIER_clicked()
        QString value;
 
        QSqlQuery query;
-       query.prepare("UPDATE DECHETS SET DESTINATION='"+destination+"' ,TEMPS_A='"+temps_D+"',DATE_A='"+date_A+"' where MATRICULE='"+matricule+"' ");
-
+       query.prepare("UPDATE DECHETS SET MATRICULE='"+matricule+"' ,DESTINATION='"+destination+"' ,TEMPS_A='"+temps_D+"',DATE_A='"+date_A+"' where MATRICULED=:matriculeD ");
+ query.bindValue(":matriculeD",matriculeD );
        if (query.exec())
        {
            QMessageBox::information(nullptr, QObject::tr("modification DECHETS"),
@@ -250,7 +254,7 @@ void MainWindow::on_tab_permis_activated(const QModelIndex &index)
 
 ////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_pb_modifier_clicked()
-{
+{son->play();
 
        QString nom,prenom,datep,sexe,localite,bene,archi,nature;
        int cin,tel,nbr,terrain,plancher,hauteur;
@@ -310,24 +314,12 @@ void MainWindow::on_le_recherche_p_textChanged(const QString &arg1)
     ui->tab_permis->setModel(P.rechercher_P(ui->cmb_P->currentText(),arg1));
 }
 
-/*void MainWindow::on_pb_tri_dest_clicked()
-{
-     ui->tab_dechet->setModel(D1.afficher_tri_dest());
-}
 
-void MainWindow::on_pb_tri_nom_clicked()
-{
-    ui->tab_permis->setModel(P11.afficher_tri_nom());
-}*/
-///////////////////////////////////////////////
-/*void MainWindow::on_pb_tri_cin_clicked()
-{
-    ui->tab_permis->setModel(P11.afficher_tri_cin());
-}*/
 ///////////////////////////////
 
 void MainWindow::on_pb_tri_cin_clicked()
-{
+{son->play();
+
     QString colone=ui->colone_tri->currentText();
         QString ordre=ui->ordre_tri->currentText();
         Permis p;
@@ -335,7 +327,7 @@ void MainWindow::on_pb_tri_cin_clicked()
 }
 
 void MainWindow::on_pb_imprimer_clicked()
-{
+{son->play();
     QPrinter printer;
 
 
@@ -353,7 +345,7 @@ void MainWindow::on_pb_imprimer_clicked()
 }
 
 void MainWindow::on_pb_pdf_clicked()
-{
+{son->play();
     QString strStream;
          QTextStream out(&strStream);
 
@@ -418,4 +410,15 @@ void MainWindow::on_tabWidget_2_tabBarClicked(int index)
 {
     if (index==1)
              ui->tab_permis->setModel(P11.afficher_P());
+}
+
+
+void MainWindow::on_pb_tri_dest_clicked()
+{
+    son->play();
+
+        QString colone=ui->colone_tri_dechet->currentText();
+            QString ordre=ui->ordre_tri_dechet->currentText();
+            Dechet D;
+            ui->tab_dechet->setModel(D.tri_D(colone,ordre));
 }
