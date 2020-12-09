@@ -15,9 +15,11 @@ SOURCES += \
     connection.cpp \
     employee.cpp \
     exportexcelobject.cpp \
+    gestionpoteaux.cpp \
     login.cpp \
     main.cpp \
     mainwindow.cpp \
+    poteaux.cpp \
     recherchebon.cpp \
     rechercher.cpp
 
@@ -26,14 +28,17 @@ HEADERS += \
     connection.h \
     employee.h \
     exportexcelobject.h \
+    gestionpoteaux.h \
     login.h \
     mainwindow.h \
+    poteaux.h \
     recherchebon.h \
     rechercher.h
 
 FORMS += \
     login.ui \
     mainwindow.ui \
+    poteaux.ui \
     recherchebon.ui \
     rechercher.ui
 

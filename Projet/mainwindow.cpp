@@ -16,6 +16,7 @@
 #include <QPdfWriter>
 #include <rechercher.h>
 #include<recherchebon.h>
+#include "poteaux.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -373,6 +374,8 @@ void MainWindow::on_pushButton_13_clicked()
     int nbrpoteau = ui->lineEdit_39->text().toInt();
     int quantiterestante = nbrpoteau - quantite_a_installe;
 
+    if (nbrpoteau-quantite_a_installe >= 0)
+    {
     QSqlQuery query;
             query.prepare("UPDATE BONS SET quantite_a_installe = :quantite_a_installe, quantiterestante = :quantiterestante WHERE numbon = :numbon ");
             query.bindValue(":quantite_a_installe", quantite_a_installe);
@@ -386,6 +389,13 @@ void MainWindow::on_pushButton_13_clicked()
 
     ui->tableView_6->setModel(B_tmp.afficher());
     ui->tableView_7->setModel(B_tmp.afficher());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("le nombre du poteau a installé et plus que le nombre du poteau");
+        msgBox.exec();
+    }
 }
 
 void MainWindow::on_pushButton_14_clicked()
@@ -589,6 +599,7 @@ void MainWindow::changecolor()
     ui->pushButton_7->setStyleSheet("background-color : skyblue");
     ui->pushButton_8->setStyleSheet("background-color : skyblue");
     ui->pushButton_9->setStyleSheet("background-color : skyblue");
+    ui->pushButton_10->setStyleSheet("background-color : skyblue");
 
 
 }
@@ -641,4 +652,12 @@ void MainWindow::on_pushButton_9_clicked()
     Recherchebon RB;
     RB.setModal(true);
     RB.exec();
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    son->play();
+    Poteaux P;
+    P.setModal(true);
+    P.exec();
 }
