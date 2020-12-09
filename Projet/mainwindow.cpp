@@ -38,39 +38,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->lineEdit_11->setValidator(vali);
     ui->lineEdit_14->setValidator(vali);
 
-///////////////////////////////////////////////////////////
-    QSqlQueryModel * modal = new QSqlQueryModel(this);
-    QSqlQuery * qry = new QSqlQuery();
-    qry->prepare("Select * from employee");
-    qry->exec();
-    modal->setQuery(*qry);
-    ui->tableView->setModel(modal);
-    QSortFilterProxyModel *m= new QSortFilterProxyModel(this);
-    m->setDynamicSortFilter(true);
-    m->setSourceModel(modal);
-    ui->tableView->setModel(m);
-    ui->tableView->setSortingEnabled(true);
-    ui->tableView->show();
+    E_tmp.tri(ui->tableView);
+    B_tmp.tri(ui->tableView_5);
 
 
     ui->tableView_2->setModel(E_tmp.afficher());
-
-///////////////////////////////////////////////////////////
-    QSqlQueryModel * modal1 = new QSqlQueryModel(this);
-    QSqlQuery * qry1 = new QSqlQuery();
-    qry1->prepare("Select * from Bons");
-    qry1->exec();
-    modal1->setQuery(*qry1);
-    ui->tableView_5->setModel(modal1);
-    QSortFilterProxyModel *mm= new QSortFilterProxyModel(this);
-    mm->setDynamicSortFilter(true);
-    mm->setSourceModel(modal1);
-    ui->tableView_5->setModel(mm);
-    ui->tableView_5->setSortingEnabled(true);
-    ui->tableView_5->show();
-///////////////////////////////////////////////////////////
-
-
 
     ui->tableView_6->setModel(B_tmp.afficher());
     ui->tableView_7->setModel(B_tmp.afficher());
@@ -134,18 +106,7 @@ void MainWindow::on_pushButton_clicked()
     if(test)
     {
         msgBox.setText("Ajout avec succés.");
-        QSqlQueryModel * modal = new QSqlQueryModel(this);
-        QSqlQuery * qry = new QSqlQuery();
-        qry->prepare("Select * from employee");
-        qry->exec();
-        modal->setQuery(*qry);
-        ui->tableView->setModel(modal);
-        QSortFilterProxyModel *m= new QSortFilterProxyModel(this);
-        m->setDynamicSortFilter(true);
-        m->setSourceModel(modal);
-        ui->tableView->setModel(m);
-        ui->tableView->setSortingEnabled(true);
-        ui->tableView->show();
+        E_tmp.tri(ui->tableView);
 
         ui->tableView_2->setModel(E_tmp.afficher());
       }
@@ -186,18 +147,7 @@ void MainWindow::on_pushButton_3_clicked()
                 {
                     msgBox.setText( "Suppression avec succés." );
 
-                    QSqlQueryModel * modal = new QSqlQueryModel(this);
-                    QSqlQuery * qry = new QSqlQuery();
-                    qry->prepare("Select * from employee");
-                    qry->exec();
-                    modal->setQuery(*qry);
-                    ui->tableView->setModel(modal);
-                    QSortFilterProxyModel *m= new QSortFilterProxyModel(this);
-                    m->setDynamicSortFilter(true);
-                    m->setSourceModel(modal);
-                    ui->tableView->setModel(m);
-                    ui->tableView->setSortingEnabled(true);
-                    ui->tableView->show();
+                    E_tmp.tri(ui->tableView);
                     ui->tableView_2->setModel(E_tmp.afficher());
                  }
                   break;
@@ -303,18 +253,7 @@ void MainWindow::on_pushButton_4_clicked()
      {
            msgBox.setText("Le Document a été modifié.");
 
-           QSqlQueryModel * modal = new QSqlQueryModel(this);
-           QSqlQuery * qry = new QSqlQuery();
-           qry->prepare("Select * from employee");
-           qry->exec();
-           modal->setQuery(*qry);
-           ui->tableView->setModel(modal);
-           QSortFilterProxyModel *m= new QSortFilterProxyModel(this);
-           m->setDynamicSortFilter(true);
-           m->setSourceModel(modal);
-           ui->tableView->setModel(m);
-           ui->tableView->setSortingEnabled(true);
-           ui->tableView->show();
+           E_tmp.tri(ui->tableView);
 
       ui->tableView_2->setModel(E_tmp.afficher());
      }
@@ -383,18 +322,7 @@ void MainWindow::on_pushButton_11_clicked()
     {
         msgBox.setText("Ajout avec succés.");
 
-        QSqlQueryModel * modal1 = new QSqlQueryModel(this);
-        QSqlQuery * qry1 = new QSqlQuery();
-        qry1->prepare("Select * from Bons");
-        qry1->exec();
-        modal1->setQuery(*qry1);
-        ui->tableView_5->setModel(modal1);
-        QSortFilterProxyModel *mm= new QSortFilterProxyModel(this);
-        mm->setDynamicSortFilter(true);
-        mm->setSourceModel(modal1);
-        ui->tableView_5->setModel(mm);
-        ui->tableView_5->setSortingEnabled(true);
-        ui->tableView_5->show();
+        B_tmp.tri(ui->tableView_5);
 
         ui->tableView_6->setModel(B_tmp.afficher());
         ui->tableView_7->setModel(B_tmp.afficher());
@@ -454,18 +382,7 @@ void MainWindow::on_pushButton_13_clicked()
 
     query.exec();
 
-    QSqlQueryModel * modal1 = new QSqlQueryModel(this);
-    QSqlQuery * qry1 = new QSqlQuery();
-    qry1->prepare("Select * from Bons");
-    qry1->exec();
-    modal1->setQuery(*qry1);
-    ui->tableView_5->setModel(modal1);
-    QSortFilterProxyModel *mm= new QSortFilterProxyModel(this);
-    mm->setDynamicSortFilter(true);
-    mm->setSourceModel(modal1);
-    ui->tableView_5->setModel(mm);
-    ui->tableView_5->setSortingEnabled(true);
-    ui->tableView_5->show();
+    B_tmp.tri(ui->tableView_5);
 
     ui->tableView_6->setModel(B_tmp.afficher());
     ui->tableView_7->setModel(B_tmp.afficher());
@@ -496,18 +413,7 @@ void MainWindow::on_pushButton_14_clicked()
                 {
                     msgBox.setText( "Suppression avec succés." );
 
-                    QSqlQueryModel * modal1 = new QSqlQueryModel(this);
-                    QSqlQuery * qry1 = new QSqlQuery();
-                    qry1->prepare("Select * from Bons");
-                    qry1->exec();
-                    modal1->setQuery(*qry1);
-                    ui->tableView_5->setModel(modal1);
-                    QSortFilterProxyModel *mm= new QSortFilterProxyModel(this);
-                    mm->setDynamicSortFilter(true);
-                    mm->setSourceModel(modal1);
-                    ui->tableView_5->setModel(mm);
-                    ui->tableView_5->setSortingEnabled(true);
-                    ui->tableView_5->show();
+                    B_tmp.tri(ui->tableView_5);
 
                     ui->tableView_6->setModel(B_tmp.afficher());
                     ui->tableView_7->setModel(B_tmp.afficher());
@@ -588,18 +494,7 @@ void MainWindow::on_pushButton_15_clicked()
           msgBox.setText("Le Document a été modifié.");
           msgBox.exec();
 
-          QSqlQueryModel * modal1 = new QSqlQueryModel(this);
-          QSqlQuery * qry1 = new QSqlQuery();
-          qry1->prepare("Select * from Bons");
-          qry1->exec();
-          modal1->setQuery(*qry1);
-          ui->tableView_5->setModel(modal1);
-          QSortFilterProxyModel *mm= new QSortFilterProxyModel(this);
-          mm->setDynamicSortFilter(true);
-          mm->setSourceModel(modal1);
-          ui->tableView_5->setModel(mm);
-          ui->tableView_5->setSortingEnabled(true);
-          ui->tableView_5->show();
+          B_tmp.tri(ui->tableView_5);
 
           ui->tableView_6->setModel(B_tmp.afficher());
           ui->tableView_7->setModel(B_tmp.afficher());
@@ -710,6 +605,9 @@ void MainWindow::on_pushButton_6_clicked()
         return;
 
     ui->textEdit->print(&printer);
+    QMessageBox msgBox;
+    msgBox.setText("le document a été imprimé");
+    msgBox.exec();
 
 }
 
@@ -719,27 +617,7 @@ void MainWindow::on_tableView_5_activated(const QModelIndex &index)
 {
     son->play();
     QString val =ui->tableView_5->model()->data(index).toString();
-    QSqlQuery query;
-    query.prepare("SELECT * FROM Bons WHERE numbon='"+val+"'");
-    if (query.exec())
-    {
-        int i=0;
-        while(query.next() and i==0)
-        {
-            ui->textEdit->append(query.value(0).toString());
-            ui->textEdit->append(query.value(1).toString());
-            ui->textEdit->append(query.value(2).toString());
-            ui->textEdit->append(query.value(3).toString());
-            ui->textEdit->append(query.value(4).toString());
-            ui->textEdit->append("--------------\n");
-            i=1;
-        }
-
-         }
-
-        else {
-                QMessageBox::critical(this,tr("error::"), query.lastError().text());
-        }
+    B_tmp.imprimer(ui->textEdit, val);
 }
 
 void MainWindow::on_pushButton_7_clicked()

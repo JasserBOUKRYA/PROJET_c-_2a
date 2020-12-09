@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QDate>
+#include <QTableView>
 
 
 class Employee
@@ -35,6 +36,7 @@ public:
     bool supprimer(QString);
     bool  rechercher( QString );
     QSqlQueryModel* search(QString colone,QString text);
+    void tri(QTableView* );
 
 
 private:

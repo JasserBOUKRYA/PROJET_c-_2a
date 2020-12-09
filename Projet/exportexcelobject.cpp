@@ -89,7 +89,6 @@ int ExportExcelObject::export2Excel()
         if(r % 10 == 0)
             emit exportedRowCount(r);
     }
-
     emit exportedRowCount(r);
 
     return iRet;

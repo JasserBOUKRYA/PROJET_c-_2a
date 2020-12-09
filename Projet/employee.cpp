@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QTableView>
 #include <QSqlQueryModel>
+#include <QSortFilterProxyModel>
 
 Employee::Employee(QString matricule, QString nom, QString prenom, QString cin, QString telephone, QString email, QString adresse, QDate date_naissance)
 {
@@ -100,4 +101,18 @@ QSqlQueryModel* Employee::search(QString colone,QString text)
      return model;
 }
 
-
+void Employee::tri(QTableView *T)
+{
+    QSqlQueryModel * modal = new QSqlQueryModel();
+    QSqlQuery * qry = new QSqlQuery();
+    qry->prepare("Select * from employee");
+    qry->exec();
+    modal->setQuery(*qry);
+    T->setModel(modal);
+    QSortFilterProxyModel *m= new QSortFilterProxyModel();
+    m->setDynamicSortFilter(true);
+    m->setSourceModel(modal);
+    T->setModel(m);
+    T->setSortingEnabled(true);
+    T->show();
+}

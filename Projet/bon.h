@@ -4,6 +4,8 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QDate>
+#include <QTableView>
+#include <QTextEdit>
 
 
 class Bon
@@ -27,8 +29,9 @@ public:
     QSqlQueryModel*    afficher();
     bool supprimer(QString);
     bool  rechercher( QString );
-
+    void tri(QTableView *);
     QSqlQueryModel* search(QString colone,QString text);
+    void imprimer(QTextEdit *, QString);
 
 private:
     QString numbon, nomvoie, localite;
