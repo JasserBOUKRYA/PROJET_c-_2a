@@ -1,5 +1,6 @@
 #include "gestionemployee.h"
 #include "ui_gestionemployee.h"
+#include <qdatetimeedit.h>
 
 GestionEmployee::GestionEmployee(QWidget *parent) :
     QDialog(parent),
@@ -72,6 +73,7 @@ void GestionEmployee::on_pushButton_clicked()
        msgBox.setText("mauvaise écriture pour le numero CIN");
    }
 
+
    else if(!regexnumber.match(telephone).hasMatch())
    {
        msgBox.setText("mauvaise écriture pour le numero telephone");
@@ -80,6 +82,11 @@ void GestionEmployee::on_pushButton_clicked()
    else if(!regexmail.match(email).hasMatch())
    {
        msgBox.setText("mauvaise écriture pour l'e-mail");
+   }
+
+   else if ( ui->dateEdit_2->date() > QDate::currentDate())
+   {
+       msgBox.setText("Cette date de naissance est invalide");
    }
 
    else

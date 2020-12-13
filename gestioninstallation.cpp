@@ -51,24 +51,32 @@ void GestionInstallation::on_pushButton_11_clicked()
     QDate datebon = ui->dateEdit->date();
     QString localite = ui->lineEdit_36->text();
     int nbrpoteau = ui->lineEdit_38->text().toInt();
-
-
-    Bon B( numbon,  datebon,  nbrpoteau,  nomvoie,  localite);
     QMessageBox msgBox;
-    bool test=B.ajouter();
-    if(test)
+
+    if ( ui->dateEdit->date() > QDate::currentDate())
     {
-        msgBox.setText("Ajout avec succés.");
+        msgBox.setText("Cette date du bon est invalide");
+    }
 
-        B_tmp.tri(ui->tableView_5);
+    else
+    {
 
-        ui->tableView_6->setModel(B_tmp.afficher());
-        ui->tableView_7->setModel(B_tmp.afficher());
-      }
+        Bon B( numbon,  datebon,  nbrpoteau,  nomvoie,  localite);
+        bool test=B.ajouter();
+        if(test)
+        {
+            msgBox.setText("Ajout avec succés.");
+
+            B_tmp.tri(ui->tableView_5);
+
+            ui->tableView_6->setModel(B_tmp.afficher());
+            ui->tableView_7->setModel(B_tmp.afficher());
+        }
 
         else {
 
         msgBox.setText("Echec au niveau de l'ajout.");
+            }
     }
 
     msgBox.exec();
