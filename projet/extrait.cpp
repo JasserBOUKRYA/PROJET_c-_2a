@@ -107,7 +107,6 @@ QSqlQueryModel* Extrait::afficher()
 
 
    model->setQuery("SELECT* FROM extrait");
-   model->setHeaderData(12, Qt::Vertical, QObject::tr("ID"));
    model->setHeaderData(1, Qt::Vertical, QObject::tr("Nom"));
    model->setHeaderData(2, Qt::Vertical, QObject::tr("Prenom"));
    model->setHeaderData(3, Qt::Vertical, QObject::tr("Date de Naissance"));
@@ -119,6 +118,7 @@ QSqlQueryModel* Extrait::afficher()
    model->setHeaderData(9, Qt::Vertical, QObject::tr("Situation Familiale"));
    model->setHeaderData(10, Qt::Vertical, QObject::tr("Nom Prenom du Declarant"));
    model->setHeaderData(11, Qt::Vertical, QObject::tr("Nom Prenom de l'Officier"));
+   model->setHeaderData(12, Qt::Vertical, QObject::tr("ID"));
 
   return  model;
 }

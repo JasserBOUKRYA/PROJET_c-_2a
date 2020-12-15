@@ -1,7 +1,13 @@
 QT       += core gui sql
 CONFIG += console
+QT += printsupport
+QT += widgets multimedia
+QT += serialport
+greaterThan(QT_MAJOR_VERSION, 4):
+QT += widgets
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+TARGET = test_son
+TEMPLATE = app
 
 CONFIG += c++11
 
@@ -17,21 +23,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
     connexion.cpp \
     extrait.cpp \
+    gestiontaxe.cpp \
     interface.cpp \
     main.cpp \
     mainwindow.cpp \
     taxe.cpp
 
 HEADERS += \
+    arduino.h \
     connexion.h \
     extrait.h \
+    gestiontaxe.h \
     interface.h \
     mainwindow.h \
     taxe.h
 
 FORMS += \
+    gestiontaxe.ui \
     interface.ui \
     mainwindow.ui
 
@@ -39,3 +50,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    Ressources.qrc

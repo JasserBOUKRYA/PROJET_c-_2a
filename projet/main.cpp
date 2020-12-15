@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "connexion.h"
 #include "interface.h"
+#include "gestiontaxe.h"
 #include <QApplication>
 #include<QDebug>
 #include<QMessageBox>
+#include<QFile>
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +15,12 @@ int main(int argc, char *argv[])
     bool test=C.creatConnexion();
     MainWindow w;
     interface i;
+    Dialog d;
+
+     QFile styleSheetFile(":/styleSheet/Integrid.qss");
+        styleSheetFile.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(styleSheetFile.readAll());
+        a.setStyleSheet(styleSheet);
 
 
     if(test)
@@ -31,6 +39,7 @@ int main(int argc, char *argv[])
     }
        //w.show();
 i.show();
+d.show();
         return a.exec();
 
 }

@@ -22,7 +22,10 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer();
+    bool modifier();
     QSqlQueryModel* rechercher(QString,QString);
+    QSqlQueryModel* tri1(QString,QString);
+
 
 
 

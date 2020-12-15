@@ -162,7 +162,7 @@ QToolButton:hover
 QToolButton:pressed
 {
 	background-color: #727272;
-	border: 1px solid #46a2da;
+        border: 1px solid #46a2da;
 
 }
 
@@ -178,7 +178,7 @@ QToolButton:checked
 QPushButton
 {
 	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(184, 184, 184, 255),stop:1 rgba(159, 159, 159, 255));
-	color: #000;
+        color: ##add8e6;
 	min-width: 80px;
 	border-style: solid;
 	border-width: 1px;

@@ -90,6 +90,25 @@ bool Taxe::supprimer()
              return false;
 }
 
+bool Taxe::modifier()
+{
+    QSqlQuery query;
+
+
+         query.prepare("update Taxe set  superficie=:superficie, montant_loyer=:montant_loyer "
+                       ",date_creation=:date_creation,montant_taxe=:montant_taxe where numT=:numT");
+
+         query.bindValue(":numT", numT);
+         query.bindValue(":superficie", superficie);
+         query.bindValue(":montant_loyer",montant_loyer);
+         query.bindValue(":date_creation",date_creation);
+         query.bindValue(":montant_taxe",montant_taxe);
+
+        return query.exec();
+
+
+}
+
 QSqlQueryModel* Taxe::rechercher(QString colone,QString text)
 {
      QSqlQueryModel* model=new QSqlQueryModel();
@@ -97,4 +116,11 @@ QSqlQueryModel* Taxe::rechercher(QString colone,QString text)
      model->setQuery("SELECT * FROM taxe WHERE UPPER("+colone+") LIKE UPPER('"+text+"%')");
 
      return model;
+}
+
+QSqlQueryModel*  Taxe::tri1(QString colone, QString ordre)
+{
+QSqlQueryModel* model=new QSqlQueryModel();
+model->setQuery("select * from taxe order by "+colone+" "+ordre+"");
+return model;
 }

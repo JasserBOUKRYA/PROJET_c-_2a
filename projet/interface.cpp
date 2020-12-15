@@ -5,11 +5,33 @@
 #include<QMessageBox>
 #include<QIntValidator>
 #include<QLabel>
+#include<QDialog>
 #include<QSqlQuery>
 #include<QSqlError>
 #include <QModelIndex>
 #include <QtPrintSupport/QPrintDialog>
 #include<QtPrintSupport/QPrinter>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QTextEdit>
+#include <QtSql/QSqlQueryModel>
+#include <QVector2D>
+#include <QVector>
+#include <QSqlQuery>
+#include<QDesktopServices>
+#include <QMessageBox>
+#include<QUrl>
+#include <QPixmap>
+#include <QTabWidget>
+#include <QValidator>
+#include <QPrintDialog>
+#include<QtSql/QSqlQuery>
+#include<QVariant>
+#include <QSound>
+
+
 
 interface::interface(QWidget *parent) :
     QDialog(parent),
@@ -17,8 +39,8 @@ interface::interface(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->le_idd->setValidator(new QIntValidator(0, 9999999, this));
+    son=new QSound(":/new/son/click.wav");
     ui->tableView->setModel(E.afficher());
-    ui->tableView_2->setModel(T.afficher());
 }
 
 interface::~interface()
@@ -27,7 +49,7 @@ interface::~interface()
 }
 
 void interface::on_pb_ajouter_clicked()
-{
+{   son->play();
     QString nom=ui->le_nom->text();
     QString prenom=ui->le_prenom->text();
     QString sexe=ui->cb_sexe->currentText();
@@ -62,64 +84,7 @@ if (test)
 }
 }
 
-void interface::on_pushButton_7_clicked()
-{
-        /*QString nom=ui->le_nom_2->text();
-        QString prenom=ui->le_prenom_2->text();
-        QString sexe=ui->le_sexe_2->text().toUInt();
-        QString nomprenomofficier=ui->le_nomoff_2->text();
-        QString nomprenompere=ui->le_nompere_2->text();
-        QString nomprenommere=ui->le_nommere_2->text();
-        QString datedeladeclaration=ui->le_datedecl_2->text();
-        QString situationf=ui->le_situationf_2->text();
-        QString nomprenomdeclarant=ui->le_nomdeclarant_2->text();
-        QString datedenaissance=ui->le_datenaissance_2->text();
-        QString lieudenaissance=ui->le_lieunaissance_2->text();
-        int id=ui->le_idd_2->text().toUInt();
 
-
-
-      Extrait E(nom, prenom , datedenaissance , lieudenaissance,sexe,nomprenompere,nomprenommere,datedeladeclaration,situationf,nomprenomdeclarant,nomprenomofficier,id);
-
-
-       bool test=E.modifier(id);
-        if (test)
-        {
-            QMessageBox::information(nullptr, QObject::tr("modification des Extraits"),
-                        QObject::tr("Modification avec succes.\n"
-                                    "Click OK to exit."), QMessageBox::Ok);
-            ui->tableView->setModel(E.afficher());
-        }
-        else
-        {
-            QMessageBox::information(nullptr, QObject::tr("modification des Extraits"),
-                        QObject::tr("Echec de modification.\n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);
-        }
-*/
-}
-
-/*void interface::on_supprimer_clicked()
-{
-    Taxe T;
-
-        T.setnumT(ui->le_supprimer->text().toInt());
-        bool test=T.supprimer(T.getnumT());
-        if (test)
-        {
-            QMessageBox::information(nullptr, QObject::tr("supprimer Taxe"),
-                        QObject::tr("Suppression avec succes.\n"
-                                    "Click OK to exit."), QMessageBox::Ok);
-            ui->tableView->setModel(T.afficher());
-        }
-        else
-        {
-            QMessageBox::information(nullptr, QObject::tr("supp permis"),
-                        QObject::tr("Echec de suppression.\n"
-                                    "Click Cancel to exit."), QMessageBox::Cancel);
-        }
-}
-*/
 void interface::on_le_recherche_textChanged(const QString &arg1)
 {
     Extrait E;
@@ -134,7 +99,6 @@ void interface::on_tableView_activated(const QModelIndex &index)
         query.bindValue(":extraitSelec",extraitSelec);
         if (query.exec())
         {
-
             while(query.next())
             {
                 ui->nom->setText(query.value(0).toString());
@@ -168,7 +132,7 @@ void interface::on_tableView_activated(const QModelIndex &index)
 
 void interface::on_modifiextrait_clicked()
 {
-
+son->play();
     QString nom,sexe, prenom , datedenaissance , lieudenaissance,nomprenompere,nomprenommere,datedeladeclaration,situationf,nomprenomdeclarant,nomprenomofficier;
     int id;
 
@@ -185,6 +149,8 @@ void interface::on_modifiextrait_clicked()
     nomprenomdeclarant=ui->declarant->text();
     nomprenomofficier=ui->officier->text();
     id=ui->idd2->text().toInt();
+
+
  Extrait E(nom, prenom , datedenaissance , lieudenaissance,sexe,nomprenompere,nomprenommere,datedeladeclaration,situationf,nomprenomdeclarant,nomprenomofficier,id);
     QMessageBox msgBox;
     if (E.modifier())
@@ -203,74 +169,88 @@ void interface::on_modifiextrait_clicked()
     msgBox.exec();
 }
 
-void interface::on_Ajouter_clicked()
-{
-    int numT=ui->numT->text().toInt();
-    int superficie=ui->superficie->text().toInt();
-    int montant_loyer=ui->montant_loyer->text().toInt();
-    QString date_creation=ui->date_creation->text();
-    int montant_taxe=ui->montant_taxe->text().toInt();
-
-    Taxe T(numT ,superficie ,montant_loyer,date_creation,montant_taxe );
-
-    bool test=T.ajouter();
-    if (test)
-    {
 
 
-       QMessageBox::information(nullptr,QObject::tr(" Ajout taxe"),
-                                 QObject::tr("La taxe a été ajoutée \n "
-                                             "click OK to exit"),QMessageBox::Ok);
-        ui->tableView_2->setModel(T.afficher());
-
-    }
-     else
-
-    {   QMessageBox::critical(nullptr,QObject::tr("Ajout taxe"),
-                              QObject::tr("La taxe n'a pas été ajoutée \n "
-                                          "click Cancel to exit"),QMessageBox::Cancel);
-    }
-}
-
-void interface::on_le_recherche_2_textChanged(const QString &arg1)
-{
-    Taxe T;
-        ui->tableView_2->setModel(T.rechercher(ui->cb_recherche_2->currentText(),arg1));
-}
-
-void interface::on_supprimer_clicked()
-{
-   int numT =ui->le_supprimer->text().toInt();
-     Taxe t;
-     t.setnumT(numT);
-     QMessageBox msg;
-     if(t.supprimer())
-     {
-         msg.setText("suppression avec succés");
-         ui->tableView_2->setModel(t.afficher());
-
-     }
-     else
-     {
-         msg.setText("echec de suppression");
-     }
-     msg.exec();
 
 
-}
 
 void interface::on_button_tri_clicked()
-{
+{son->play();
     QString colone=ui->colone_tri->currentText();
     QString ordre=ui->ordre_tri->currentText();
-    Extrait e;
-    ui->tableView->setModel(e.tri(colone,ordre));
+    Extrait E;
+    ui->tableView->setModel(E.tri(colone,ordre));
 }
 
-void interface::on_imprimer_3_clicked()
-{
+
+
+
+
+void interface::on_pushButton_clicked()
+{son->play();
+    QString strStream;
+                              QTextStream out(&strStream);
+
+                              const int rowCount = ui->tableView->model()->rowCount();
+                              const int columnCount = ui->tableView->model()->columnCount();
+
+                              out <<  "<html>\n"
+                                  "<head>\n"
+                                  "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                                  <<  QString("<title>%1</title>\n").arg("strTitle")
+                                  <<  "</head>\n"
+                                  "<body bgcolor=#ffffff link=#5000A0>\n"
+
+                                 //     "<align='right'> " << datefich << "</align>"
+                                  "<center> <H1>EXTRAIT DE NAISSANCE </H1></br></br><table border=1 cellspacing=0 cellpadding=2>\n";
+
+                              // headers
+                              out << "<thead><tr bgcolor=#f0f0f0> <th>Numero</th>";
+                              for (int column = 0; column < columnCount; column++)
+                                  if (!ui->tableView->isColumnHidden(column))
+                                      out << QString("<th>%1</th>").arg(ui->tableView->model()->headerData(column, Qt::Horizontal).toString());
+                              out << "</tr></thead>\n";
+
+                              // data table
+                              for (int row = 0; row < rowCount; row++) {
+                                  out << "<tr> <td bkcolor=0>" << row+1 <<"</td>";
+                                  for (int column = 0; column < columnCount; column++) {
+                                      if (!ui->tableView->isColumnHidden(column)) {
+                                          QString data = ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString().simplified();
+                                          out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                      }
+                                  }
+                                  out << "</tr>\n";
+                              }
+                              out <<  "</table> </center>\n"
+                                  "</body>\n"
+                                  "</html>\n";
+
+                        QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Sauvegarder en PDF", QString(), "*.pdf");
+                          if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+
+                         QPrinter printer (QPrinter::PrinterResolution);
+                          printer.setOutputFormat(QPrinter::PdfFormat);
+                         printer.setPaperSize(QPrinter::A4);
+                        printer.setOutputFileName(fileName);
+
+                         QTextDocument doc;
+                          doc.setHtml(strStream);
+                          doc.setPageSize(printer.pageRect().size()); // This is necessary if you want to hide the page number
+                          doc.print(&printer);
+}
+
+
+
+void interface::on_imprimer_clicked()
+{son->play();
     QPrinter printer;
                 QPrintDialog *printDialog = new QPrintDialog(&printer, this);
                 printDialog->setWindowTitle("Imprimer Document");
                 printDialog->exec();
 }
+
+
+
+
+
