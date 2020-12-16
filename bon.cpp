@@ -27,7 +27,6 @@ QString Bon::getnomvoie(){return nomvoie;}
 QString Bon::getlocalite(){return localite;}
 
 
-
 bool Bon::ajouter()
 {
     QSqlQuery query;

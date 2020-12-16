@@ -8,6 +8,7 @@
 #include <QSound>
 #include <QMessageBox>
 #include "gestionpoteaux.h"
+#include "arduino.h"
 
 namespace Ui {
 class POTEAUX;
@@ -36,10 +37,14 @@ private slots:
 
     void changerbuttoncolor(QPushButton * );
 
+    void update_label();
+
 private:
     Ui::POTEAUX *ui;
     QSound * son;
     GestionPoteaux GP_tmp;
+    QByteArray data;
+    Arduino A;
     int i;
 };
 

@@ -1,11 +1,25 @@
 #include "poteaux.h"
 #include "ui_poteaux.h"
+#include <QDebug>
 
 POTEAUX::POTEAUX(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::POTEAUX)
 {
     ui->setupUi(this);
+    int ret = A.connect_arduino();
+    switch (ret)
+    {
+        case(0):qDebug()<<"arduino is available and connected to :" << A.getarduino_port_name();
+        break;
+        case(1):qDebug()<<"arduino is available but not connected to :" << A.getarduino_port_name();
+        break;
+        case(-1):qDebug()<<"arduino is not available";
+        break;
+
+    }
+    QObject::connect(A.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
+
     i=0;
     son=new QSound(":/sons/cassette-player-button-3.wav");
 
@@ -139,11 +153,11 @@ void POTEAUX::on_pushButton_3_clicked()
           }
 }
 
-void POTEAUX::on_pushButton_4_clicked()
+void POTEAUX::update_label()
 {
-    son->play();
+    data = A.read_from_arduino();
 
-    if (i == 0)
+    if (data == "0")
     {
         QString value = "OFF";
 
@@ -157,7 +171,6 @@ void POTEAUX::on_pushButton_4_clicked()
               msgBox.exec();
 
               ui->tableView->setModel(GP_tmp.afficher());
-              i=1;
         }
 
         else
@@ -166,7 +179,7 @@ void POTEAUX::on_pushButton_4_clicked()
         }
     }
 
-    else
+    else if (data == "1")
     {
         QString value = "ON";
 
@@ -188,6 +201,19 @@ void POTEAUX::on_pushButton_4_clicked()
             QMessageBox::critical(this,tr("error::"), query.lastError().text());
         }
     }
+}
+
+void POTEAUX::on_pushButton_4_clicked()
+{
+    son->play();
+
+    if (i == 0)
+    {
+        A.write_to_arduino("1");
+        i=1;
+    }
+    else
+        A.write_to_arduino("0");
 }
 
 void POTEAUX::on_lineEdit_textChanged(const QString &arg1)
