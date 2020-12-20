@@ -1,5 +1,5 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENUADMIN_H
+#define MENUADMIN_H
 
 #include <QDialog>
 #include "gestionemployee.h"
@@ -9,34 +9,32 @@
 #include <QSound>
 
 namespace Ui {
-class Menu;
+class Menuadmin;
 }
 
-class Menu : public QDialog
+class Menuadmin : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Menu(QWidget *parent = nullptr);
-    ~Menu();
-    void changerbuttoncolor(QPushButton * );
+    explicit Menuadmin(QWidget *parent = nullptr);
+    ~Menuadmin();
 
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
 
-    void ShowTime();
-
-    void on_pushButton_4_clicked();
-
     void on_pushButton_3_clicked();
 
     void on_pushButton_7_clicked();
 
+    void ShowTime();
+
+    void changerbuttoncolor(QPushButton * PB);
 private:
-    Ui::Menu *ui;
-    QSound *son;
+    Ui::Menuadmin *ui;
+        QSound *son;
 };
 
-#endif // MENU_H
+#endif // MENUADMIN_H

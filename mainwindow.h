@@ -9,6 +9,7 @@
 #include <QSqlQueryModel>
 #include "menu.h"
 #include <QPalette>
+#include "menuadmin.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

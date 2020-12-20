@@ -17,15 +17,20 @@ SOURCES += \
     connection.cpp \
     employee.cpp \
     exportexcelobject.cpp \
+    extrait.cpp \
     gestionemployee.cpp \
+    gestionextrait.cpp \
     gestioninstallation.cpp \
     gestionpoteaux.cpp \
+    gestiontaxe.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
+    menuadmin.cpp \
     poteaux.cpp \
     recherchebon.cpp \
-    rechercher.cpp
+    rechercher.cpp \
+    taxe.cpp
 
 HEADERS += \
     arduino.h \
@@ -33,20 +38,28 @@ HEADERS += \
     connection.h \
     employee.h \
     exportexcelobject.h \
+    extrait.h \
     gestionemployee.h \
+    gestionextrait.h \
     gestioninstallation.h \
     gestionpoteaux.h \
+    gestiontaxe.h \
     mainwindow.h \
     menu.h \
+    menuadmin.h \
     poteaux.h \
     recherchebon.h \
-    rechercher.h
+    rechercher.h \
+    taxe.h
 
 FORMS += \
     gestionemployee.ui \
+    gestionextrait.ui \
     gestioninstallation.ui \
+    gestiontaxe.ui \
     mainwindow.ui \
     menu.ui \
+    menuadmin.ui \
     poteaux.ui \
     recherchebon.ui \
     rechercher.ui

@@ -36,9 +36,9 @@ void MainWindow::on_pushButton_clicked()
         }
 
         if (matricule == "0000" and password == "0000")
-            count = 1;
+            count = 2;
 
-        if (count==1)
+        if (count == 1)
         {
             this->hide();
             son->play();
@@ -46,6 +46,15 @@ void MainWindow::on_pushButton_clicked()
             M.setModal(true);
             M.exec();
 
+        }
+
+        else if (count == 2)
+        {
+            this->hide();
+            son->play();
+            Menuadmin Ma;
+            Ma.setModal(true);
+            Ma.exec();
         }
 
        else

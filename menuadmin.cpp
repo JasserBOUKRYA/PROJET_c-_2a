@@ -1,13 +1,12 @@
-#include "menu.h"
-#include "ui_menu.h"
+#include "menuadmin.h"
+#include "ui_menuadmin.h"
 #include <QTimer>
 #include <QDateTime>
 #include <QColorDialog>
-#include <QSqlQuery>
 
-Menu::Menu(QWidget *parent) :
+Menuadmin::Menuadmin(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Menu)
+    ui(new Ui::Menuadmin)
 {
     ui->setupUi(this);
     son=new QSound(":/sons/cassette-player-button-3.wav");
@@ -32,12 +31,12 @@ Menu::Menu(QWidget *parent) :
     ui->label_2->setPalette(palette);
 }
 
-Menu::~Menu()
+Menuadmin::~Menuadmin()
 {
     delete ui;
 }
 
-void Menu::changerbuttoncolor(QPushButton * PB)
+void Menuadmin::changerbuttoncolor(QPushButton * PB)
 {
     PB->setStyleSheet("QPushButton"
                                   "{"
@@ -50,26 +49,15 @@ void Menu::changerbuttoncolor(QPushButton * PB)
                                   );
 }
 
-
-
-void Menu::on_pushButton_clicked()
+void Menuadmin::on_pushButton_clicked()
 {
     son->play();
-    QSqlQuery query;
-    QMessageBox::critical(nullptr ,QObject::tr("Erreur"), QObject::tr("Il faut être un ADMIN pour accéder au Gestion d'Employée"));
-
+    GestionEmployee GE;
+    GE.setModal(true);
+    GE.exec();
 }
 
-void Menu::on_pushButton_2_clicked()
-{
-    son->play();
-    GestionInstallation GI;
-    GI.setModal(true);
-    GI.exec();
-
-}
-
-void Menu::ShowTime()
+void Menuadmin::ShowTime()
 {
     QTime time = QTime::currentTime();
     QString time_text = time.toString("hh : mm : ss");
@@ -77,12 +65,15 @@ void Menu::ShowTime()
 
 }
 
-void Menu::on_pushButton_4_clicked()
+void Menuadmin::on_pushButton_2_clicked()
 {
-    //
+    son->play();
+    GestionInstallation GI;
+    GI.setModal(true);
+    GI.exec();
 }
 
-void Menu::on_pushButton_3_clicked()
+void Menuadmin::on_pushButton_3_clicked()
 {
     son->play();
     GestionExtrait GEx;
@@ -90,7 +81,7 @@ void Menu::on_pushButton_3_clicked()
     GEx.exec();
 }
 
-void Menu::on_pushButton_7_clicked()
+void Menuadmin::on_pushButton_7_clicked()
 {
     son->play();
     GestionTaxe GT;
