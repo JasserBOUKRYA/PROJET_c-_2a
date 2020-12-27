@@ -2,7 +2,4 @@
     <qresource prefix="/son">
         <file>click.wav</file>
     </qresource>
-    <qresource prefix="/styleSheet">
-        <file>Integrid.qss</file>
-    </qresource>
 </RCC>

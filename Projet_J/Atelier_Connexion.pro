@@ -1,7 +1,7 @@
 QT       += core gui sql
 QT       += printsupport
 QT       += multimedia
-
+QT       += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
@@ -13,19 +13,24 @@ CONFIG += c++11
 
 
 SOURCES += \
+    arduino.cpp \
     dechet.cpp \
+    dialog.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
     permis.cpp
 
 HEADERS += \
+    arduino.h \
     dechet.h \
+    dialog.h \
         mainwindow.h \
     connection.h \
     permis.h
 
 FORMS += \
+        dialog.ui \
         mainwindow.ui
 
 # Default rules for deployment.

@@ -12,9 +12,15 @@
 #include <QTextDocument>
 #include <QTextEdit>
 #include <QTextStream>
+#include <QPalette>
+#include <arduino.h>
+#include<QDebug>
+#include <iostream>
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+
     ui(new Ui::MainWindow)
 {
 
@@ -22,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     son=new QSound(":/son/click.wav");
 
-ui->le_matricule_D->setValidator(new QIntValidator(0, 9999999, this));
+    //ui->le_matricule_D->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_cinP->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_tel->setValidator(new QIntValidator(0, 99999999, this));
     ui->le_nbr->setValidator(new QIntValidator(0, 9999999, this));
@@ -30,9 +36,25 @@ ui->le_matricule_D->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_plancher->setValidator(new QIntValidator(0, 9999999, this));
     ui->le_hauteur->setValidator(new QIntValidator(0, 9999999, this));
 
+   // ui->tab_dechet->setPalette(QPalette(Qt::lightGray));
+    ui->tab_permis->setPalette(QPalette(Qt::lightGray));
 
-    ui->tab_dechet->setModel(D1.afficher());
+    // ui->tab_dechet->setModel(D1.afficher());
     ui->tab_permis->setModel(P11.afficher_P());
+
+
+    int ret = A.connect_arduino();
+        switch (ret)
+        {
+            case(0):qDebug()<<"arduino is available and connected to :" << A.getarduino_port_name();
+            break;
+            case(1):qDebug()<<"arduino is available but not connected to :" << A.getarduino_port_name();
+            break;
+            case(-1):qDebug()<<"arduino is not available";
+            break;
+
+        }
+        QObject::connect(A.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
 
 }
 
@@ -40,61 +62,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-/////////////////////////////////////////////////////////////////////////////////
-void MainWindow::on_pb_ajouter1_clicked()
-{
-    son->play();
-int matriculeD=ui->le_matricule_D->text().toInt();
-   QString matricule=ui->le_matricule->text();
-   QString date=ui->le_date->text();
-   QString tempsD=ui->le_temps->text();
-   QString destination=ui->le_cite->text();
+//////////////////////////////////////////////////////////////////////////////////////
 
-   Dechet D1(matriculeD,matricule,tempsD,date,destination);
-
-   bool test=D1.ajouter();
-    if (test)
-    {
-        QMessageBox::information(nullptr, QObject::tr("Ajout dechet"),
-                    QObject::tr("Ajout avec succes.\n"
-                                "Click OK to exit."), QMessageBox::Ok);
-         ui->tab_dechet->setModel(D1.afficher());
-    }
-    else
-    {
-        QMessageBox::information(nullptr, QObject::tr("Ajout dechet"),
-                    QObject::tr("Echec d'ajout.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-    }
-
-}
-
-void MainWindow::on_pb_quitter_clicked()
-{
-
-}
-/////////////////////////////////////////////////////////////////////////////
-void MainWindow::on_pb_supp_clicked()
-{son->play();
-    Dechet D;
-    D.setDestination(ui->le_supp->text());
-    bool test=D.supprimer(D.getDestination());
-    if (test)
-    {
-        QMessageBox::information(nullptr, QObject::tr("supp dechet"),
-                    QObject::tr("Suppression avec succes.\n"
-                                "Click OK to exit."), QMessageBox::Ok);
-        ui->tab_dechet->setModel(D1.afficher());
-
-    }
-    else
-    {
-        QMessageBox::information(nullptr, QObject::tr("supp dechet"),
-                    QObject::tr("Echec de suppression.\n"
-                                "Click Cancel to exit."), QMessageBox::Cancel);
-    }
-}
-///////////////////////////////////////////////////////////////////////
 void MainWindow::on_pb_ajouterPermis_clicked()
 {son->play();
 
@@ -108,7 +77,7 @@ void MainWindow::on_pb_ajouterPermis_clicked()
     QString nom=ui->le_name->text();
     QString prenom=ui->le_prenom->text();
     QString datep=ui->le_dateP->text();
-    QString sexe=ui->le_sexe->text();
+    QString sexe=ui->le_sexe->currentText();
     QString localite=ui->le_localite->text();
     QString bene=ui->le_beneficiere->text();
     QString archi=ui->le_architecte->text();
@@ -156,65 +125,6 @@ void MainWindow::on_pb_suppPERMIS_clicked()
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-void MainWindow::on_tab_dechet_activated(const QModelIndex &index)
-{
-    QString val =ui->tab_dechet->model()->data(index).toString();
-       QSqlQuery query;
-
-  query.prepare("SELECT * FROM DECHETS WHERE MATRICULE='"+val+"' or DATE_A='"+val+"' or TEMPS_A='"+val+"'or DESTINATION='"+val+"' or MATRICULED='"+val+"'");
-       if (query.exec())
-       {
-
-           while(query.next())
-           {
-
-               ui->le_matricule_2->setText(query.value(0).toString());
-               ui->le_temps_2->setText(query.value(1).toString());
-               ui->le_date_2->setText(query.value(2).toString());
-               ui->le_cite_2->setText(query.value(3).toString());
-               ui->le_matricule_D2->setText(query.value(4).toString());
-
-              }
-
-            }
-
-           else {
-                   QMessageBox::critical(this,tr("error::"), query.lastError().text());
-           }
-}
-//////////////////////////////////////////////////////////////////////////////
-
-void MainWindow::on_pb_MODIFIER_clicked()
-{son->play();
-       QString matricule,destination,temps_D,date_A;
-int matriculeD;
-
-matriculeD=ui->le_matricule_D2->text().toInt();
-       matricule=ui->le_matricule_2->text();
-       destination=ui->le_cite_2->text();
-       temps_D=ui->le_temps_2->text();
-       date_A=ui->le_date_2->text();
-
-       QString value;
-
-       QSqlQuery query;
-       query.prepare("UPDATE DECHETS SET MATRICULE='"+matricule+"' ,DESTINATION='"+destination+"' ,TEMPS_A='"+temps_D+"',DATE_A='"+date_A+"' where MATRICULED=:matriculeD ");
- query.bindValue(":matriculeD",matriculeD );
-       if (query.exec())
-       {
-           QMessageBox::information(nullptr, QObject::tr("modification DECHETS"),
-                       QObject::tr("Modification avec succes.\n"
-                                   "Click OK to exit."), QMessageBox::Ok);
-         ui->tab_dechet->setModel(D1.afficher());
-       }
-
-       else
-       {
-           QMessageBox::critical(this,tr("error::"), query.lastError().text());
-       }
-}
-
-////////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_tab_permis_activated(const QModelIndex &index)
 {
     QString val =ui->tab_permis->model()->data(index).toString();
@@ -236,8 +146,11 @@ void MainWindow::on_tab_permis_activated(const QModelIndex &index)
 
                ui->le_name_modif->setText(query.value(6).toString());
                ui->le_prenom_modif->setText(query.value(7).toString());
-               ui->le_dateP_modif->setText(query.value(8).toString());
-               ui->le_sexe_modif->setText(query.value(9).toString());
+               ui->le_dateP_modif->setDate(query.value(8).toDate());
+               int i=0;
+               while(ui->le_sexe_modif_2->itemText(i)!= query.value(9).toString()) i++;
+               ui->le_sexe_modif_2->setCurrentIndex(i);
+
                ui->le_localite_modif->setText(query.value(10).toString());
                ui->le_beneficiere_modif->setText(query.value(11).toString());
                ui->le_architecte_modif->setText(query.value(12).toString());
@@ -262,7 +175,7 @@ void MainWindow::on_pb_modifier_clicked()
     nom=ui->le_name_modif->text();
     prenom=ui->le_prenom_modif->text();
     datep=ui->le_dateP_modif->text();
-    sexe=ui->le_sexe_modif->text();
+    sexe=ui->le_sexe_modif_2->currentText();
     localite=ui->le_localite->text();
     bene=ui->le_beneficiere_modif->text();
     archi=ui->le_architecte_modif->text();
@@ -299,13 +212,7 @@ void MainWindow::on_pb_modifier_clicked()
         QMessageBox::critical(this,tr("error::"), query.lastError().text());
     }
 }
-//////////////////////////////////////////////////////////////////////////
 
-void MainWindow::on_le_recherche_textChanged(const QString &arg1)
-{
-    Dechet D;
-    ui->tab_dechet->setModel(D.rechercher(ui->cb_recherche->currentText(),arg1));
-}
 /////////////////////////////////////////////////////////////////////////////
 
 void MainWindow::on_le_recherche_p_textChanged(const QString &arg1)
@@ -399,26 +306,27 @@ void MainWindow::on_pb_pdf_clicked()
 }
 
 
-
+/*
 void MainWindow::on_tabWidget2_tabBarClicked(int index)
 {
-    if (index==1)
-             ui->tab_dechet->setModel(D1.afficher());
+
 }
+*/
 
 void MainWindow::on_tabWidget_2_tabBarClicked(int index)
 {
     if (index==1)
              ui->tab_permis->setModel(P11.afficher_P());
 }
-
-
-void MainWindow::on_pb_tri_dest_clicked()
+void MainWindow::update_label()
 {
-    son->play();
+    data=A.read_from_arduino();
+    if(data=="1")
+    {
+       ui->label_2->setText("ON");
+    }
+    else if(data=="0")
+        ui->label_2->setText("OFF");
 
-        QString colone=ui->colone_tri_dechet->currentText();
-            QString ordre=ui->ordre_tri_dechet->currentText();
-            Dechet D;
-            ui->tab_dechet->setModel(D.tri_D(colone,ordre));
+
 }

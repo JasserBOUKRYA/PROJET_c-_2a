@@ -9,7 +9,7 @@ matriculeD = 0;
 
 Dechet::Dechet(int matriculeD,QString matricule , QString temps_D ,QString date_A ,QString  destination)
 {
-this->matriculeD=matriculeD;
+    this->matriculeD=matriculeD;
     this->matricule=matricule;
     this->temps_D=temps_D;
     this->date_A=date_A;
@@ -59,7 +59,7 @@ QSqlQueryModel* Dechet::afficher()
 
          model->setQuery("SELECT* FROM DECHETS");
 
-         model->setHeaderData(0, Qt::Horizontal,QObject::tr("MATRICULE"));
+      model->setHeaderData(0, Qt::Horizontal,QObject::tr("MATRICULE"));
          model->setHeaderData(1, Qt::Horizontal,QObject::tr("TEMPS_A"));
          model->setHeaderData(2, Qt::Horizontal,QObject::tr("DATE_A"));
          model->setHeaderData(3, Qt::Horizontal,QObject::tr("DESTINATION"));
@@ -84,11 +84,3 @@ QSqlQueryModel* Dechet::tri_D(QString colone, QString ordre)
     model->setQuery("select * from dechets order by "+colone+" "+ordre+"");
     return model;
 }
-
-/*
-QSqlQueryModel * Dechet::afficher_tri_dest()
-{
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT * FROM dechets ORDER BY DESTINATION");
-    return model;
-}*/
