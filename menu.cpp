@@ -5,6 +5,7 @@
 #include <QColorDialog>
 #include <QSqlQuery>
 
+
 Menu::Menu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Menu)
@@ -79,7 +80,10 @@ void Menu::ShowTime()
 
 void Menu::on_pushButton_4_clicked()
 {
-    //
+    son->play();
+    GestionPermis GP;
+    GP.setModal(true);
+    GP.exec();
 }
 
 void Menu::on_pushButton_3_clicked()
@@ -96,4 +100,12 @@ void Menu::on_pushButton_7_clicked()
     GestionTaxe GT;
     GT.setModal(true);
     GT.exec();
+}
+
+void Menu::on_pushButton_8_clicked()
+{
+    son->play();
+    GestionDechet GD;
+    GD.setModal(true);
+    GD.exec();
 }

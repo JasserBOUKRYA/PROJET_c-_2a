@@ -6,6 +6,8 @@
 #include "gestioninstallation.h"
 #include "gestiontaxe.h"
 #include "gestionextrait.h"
+#include "gestionpermis.h"
+#include "gestiondechet.h"
 #include <QSound>
 
 namespace Ui {
@@ -32,6 +34,10 @@ private slots:
     void ShowTime();
 
     void changerbuttoncolor(QPushButton * PB);
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_8_clicked();
+
 private:
     Ui::Menuadmin *ui;
         QSound *son;

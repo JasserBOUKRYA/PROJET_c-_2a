@@ -88,3 +88,19 @@ void Menuadmin::on_pushButton_7_clicked()
     GT.setModal(true);
     GT.exec();
 }
+
+void Menuadmin::on_pushButton_4_clicked()
+{
+    son->play();
+    GestionPermis GP;
+    GP.setModal(true);
+    GP.exec();
+}
+
+void Menuadmin::on_pushButton_8_clicked()
+{
+    son->play();
+    GestionDechet GD;
+    GD.setModal(true);
+    GD.exec();
+}

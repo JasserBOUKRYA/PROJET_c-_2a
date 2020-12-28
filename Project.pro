@@ -15,18 +15,22 @@ SOURCES += \
     arduino.cpp \
     bon.cpp \
     connection.cpp \
+    dechets.cpp \
     employee.cpp \
     exportexcelobject.cpp \
     extrait.cpp \
+    gestiondechet.cpp \
     gestionemployee.cpp \
     gestionextrait.cpp \
     gestioninstallation.cpp \
+    gestionpermis.cpp \
     gestionpoteaux.cpp \
     gestiontaxe.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
     menuadmin.cpp \
+    permis.cpp \
     poteaux.cpp \
     recherchebon.cpp \
     rechercher.cpp \
@@ -36,26 +40,32 @@ HEADERS += \
     arduino.h \
     bon.h \
     connection.h \
+    dechets.h \
     employee.h \
     exportexcelobject.h \
     extrait.h \
+    gestiondechet.h \
     gestionemployee.h \
     gestionextrait.h \
     gestioninstallation.h \
+    gestionpermis.h \
     gestionpoteaux.h \
     gestiontaxe.h \
     mainwindow.h \
     menu.h \
     menuadmin.h \
+    permis.h \
     poteaux.h \
     recherchebon.h \
     rechercher.h \
     taxe.h
 
 FORMS += \
+    gestiondechet.ui \
     gestionemployee.ui \
     gestionextrait.ui \
     gestioninstallation.ui \
+    gestionpermis.ui \
     gestiontaxe.ui \
     mainwindow.ui \
     menu.ui \
