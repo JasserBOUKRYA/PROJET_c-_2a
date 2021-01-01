@@ -9,6 +9,9 @@
 #include "exportexcelobject.h"
 #include <QFileDialog>
 #include <QSound>
+#include "DuMessengerServer.h"
+#include "DuMessengerSocket.h"
+#include "messenger.h"
 
 namespace Ui {
 class GestionEmployee;
@@ -38,6 +41,8 @@ private slots:
     void on_tableView_2_activated(const QModelIndex &index);
 
     void changerbuttoncolor(QPushButton * PB);
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::GestionEmployee *ui;

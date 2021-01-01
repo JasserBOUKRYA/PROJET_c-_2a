@@ -1007,6 +1007,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLabel" name="le_id_6">
        <property name="geometry">

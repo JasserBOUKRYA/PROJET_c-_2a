@@ -10,6 +10,9 @@
     <height>632</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>Gestion Dechets</string>
   </property>
@@ -347,6 +350,9 @@
        <width>121</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="pb_MODIFIER">

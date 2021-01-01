@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <iostream>
+#include <fstream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -35,11 +37,22 @@ void MainWindow::on_pushButton_clicked()
             count++;
         }
 
-        if (matricule == "0000" and password == "0000")
+        if (matricule[0] == "1" and count != 0)
             count = 2;
 
         if (count == 1)
         {
+            QFile file("C:/Users/PCONE/Desktop/login.txt");
+                  if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+                  {
+                      QTextStream stream(&file);
+
+                      stream << matricule ;
+
+                      file.close();
+                      qDebug() << "Writing finished";
+                  }
+
             this->hide();
             son->play();
             Menu M;
@@ -50,6 +63,18 @@ void MainWindow::on_pushButton_clicked()
 
         else if (count == 2)
         {
+
+            QFile file("C:/Users/PCONE/Desktop/login.txt");
+                  if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+                  {
+                      QTextStream stream(&file);
+
+                      stream << matricule ;
+
+                      file.close();
+                      qDebug() << "Writing finished";
+                  }
+
             this->hide();
             son->play();
             Menuadmin Ma;

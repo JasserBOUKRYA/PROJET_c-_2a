@@ -10,6 +10,9 @@
     <height>421</height>
    </rect>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>Login </string>
   </property>

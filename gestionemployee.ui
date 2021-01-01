@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -387,11 +387,28 @@
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="pushButton_6">
+     <property name="geometry">
+      <rect>
+       <x>870</x>
+       <y>270</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="acceptDrops">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Messenger</string>
+     </property>
+    </widget>
     <zorder>label_19</zorder>
     <zorder>tableView</zorder>
     <zorder>pushButton_5</zorder>
     <zorder>progressBar</zorder>
     <zorder>pushButton_8</zorder>
+    <zorder>pushButton_6</zorder>
    </widget>
    <widget class="QWidget" name="tab_5">
     <attribute name="title">

@@ -68,13 +68,21 @@ void GestionPermis::on_pb_ajouterPermis_clicked()
         QString datep=ui->le_dateP->text();
         QString sexe=ui->le_sexe->currentText();
         QString localite=ui->le_localite->text();
-        QString bene=ui->le_beneficiere->text();ui->setupUi(this);
+        QString bene=ui->le_beneficiere->text();
         QString archi=ui->le_architecte->text();
         QString nature=ui->le_nature->text();
 
 
        Permis P1(cin ,tel ,nbr ,terrain ,plancher ,hauteur ,nom ,prenom ,datep ,sexe,localite ,bene ,archi ,nature );
 
+       if (ui->le_dateP->date() > QDate::currentDate())
+       {
+           QMessageBox::information(nullptr, QObject::tr("Ajout dechet"),
+                       QObject::tr("Echec d'ajout, Cette date n'existe pas.\n"
+                                   "Click Cancel to exit."), QMessageBox::Cancel);
+       }
+       else
+       {
 
         bool test=P1.ajouter_P();
          if (test)
@@ -90,6 +98,8 @@ void GestionPermis::on_pb_ajouterPermis_clicked()
                          QObject::tr("Echec d'ajout.\n"
                                      "Click Cancel to exit."), QMessageBox::Cancel);
          }
+
+       }
 }
 
 void GestionPermis::on_pb_modifier_clicked()

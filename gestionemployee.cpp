@@ -1,6 +1,7 @@
 #include "gestionemployee.h"
 #include "ui_gestionemployee.h"
 #include <qdatetimeedit.h>
+using namespace DuarteCorporation;
 
 GestionEmployee::GestionEmployee(QWidget *parent) :
     QDialog(parent),
@@ -40,6 +41,7 @@ GestionEmployee::GestionEmployee(QWidget *parent) :
     changerbuttoncolor(ui->pushButton_3);
     changerbuttoncolor(ui->pushButton_4);
     changerbuttoncolor(ui->pushButton_5);
+    changerbuttoncolor(ui->pushButton_6);
     changerbuttoncolor(ui->pushButton_8);
 
 }
@@ -307,4 +309,20 @@ void GestionEmployee::changerbuttoncolor(QPushButton * PB)
                                   "background-color : rgb(62,62,62);"
                                   "}"
                                   );
+}
+
+void GestionEmployee::on_pushButton_6_clicked()
+{
+    DuMessengerServer Server;
+    if (!Server.startserver(3333))
+    {
+        qDebug() << "erreur a la connection du serveur" << Server.errorString() ;
+    }
+
+    qDebug() << "connection avec succées au serveur" ;
+
+    son->play();
+    Messenger M;
+    M.setModal(true);
+    M.exec();
 }

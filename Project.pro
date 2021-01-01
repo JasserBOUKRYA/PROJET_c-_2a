@@ -2,6 +2,7 @@ QT       += core gui sql
 QT       += multimedia
 QT       += printsupport
 QT       += serialport
+QT       += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,6 +13,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    DuMessengerServer.cpp \
+    DuMessengerSocket.cpp \
     arduino.cpp \
     bon.cpp \
     connection.cpp \
@@ -30,6 +33,7 @@ SOURCES += \
     mainwindow.cpp \
     menu.cpp \
     menuadmin.cpp \
+    messenger.cpp \
     permis.cpp \
     poteaux.cpp \
     recherchebon.cpp \
@@ -37,6 +41,8 @@ SOURCES += \
     taxe.cpp
 
 HEADERS += \
+    DuMessengerServer.h \
+    DuMessengerSocket.h \
     arduino.h \
     bon.h \
     connection.h \
@@ -54,6 +60,7 @@ HEADERS += \
     mainwindow.h \
     menu.h \
     menuadmin.h \
+    messenger.h \
     permis.h \
     poteaux.h \
     recherchebon.h \
@@ -70,11 +77,14 @@ FORMS += \
     mainwindow.ui \
     menu.ui \
     menuadmin.ui \
+    messenger.ui \
     poteaux.ui \
     recherchebon.ui \
     rechercher.ui
 
 TARGET = Sound
+
+QMAKE_CXXFLAGS += -std=gnu++11
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
