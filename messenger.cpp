@@ -26,6 +26,14 @@ Messenger::Messenger(QWidget *parent) :
 
     mSocket->connectToHost("localhost", 3333);
 
+    QFile file("C:\\Users\\PCONE\\Desktop\\login.txt");
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        QMessageBox::information(0, "info", file.errorString());
+    }
+    QTextStream in(&file);
+     verf = in.readAll();
+
     connect(mSocket, &QTcpSocket::readyRead, [&]() {
         QTextStream T(mSocket);
         auto text = T.readAll();
@@ -48,8 +56,8 @@ void Messenger::on_send_clicked()
         QMessageBox::information(0, "info", file.errorString());
     }
     QTextStream in(&file);
-    QString matricule = in.readAll();
-    T << matricule << ": " << ui->message->text();
+
+    T << verf << ": " << ui->message->text();
     mSocket->flush();
     ui->message->clear();
 

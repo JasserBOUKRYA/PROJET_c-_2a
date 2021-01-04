@@ -1,12 +1,16 @@
 #include "poteaux.h"
 #include "ui_poteaux.h"
 #include <QDebug>
+#include <QSystemTrayIcon>
 
 POTEAUX::POTEAUX(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::POTEAUX)
 {
     ui->setupUi(this);
+    mSystemTrayIcon = new QSystemTrayIcon(this);
+    mSystemTrayIcon->setIcon(QIcon(":/myappico.png"));
+    mSystemTrayIcon->setVisible(true);
     int ret = A.connect_arduino();
     switch (ret)
     {
@@ -166,10 +170,6 @@ void POTEAUX::update_label()
 
         if (query.exec())
         {
-            QMessageBox msgBox;
-              msgBox.setText("Les poteaux en mode OFF");
-              msgBox.exec();
-
               ui->tableView->setModel(GP_tmp.afficher());
         }
 
@@ -188,12 +188,7 @@ void POTEAUX::update_label()
 
         if (query.exec())
         {
-            QMessageBox msgBox;
-              msgBox.setText("Les poteaux en mode ON");
-              msgBox.exec();
-
               ui->tableView->setModel(GP_tmp.afficher());
-              i=0;
         }
 
         else
@@ -209,11 +204,16 @@ void POTEAUX::on_pushButton_4_clicked()
 
     if (i == 0)
     {
+        mSystemTrayIcon->showMessage(tr("Notification"), tr("l'etat du poteaux a été changé au OFF"));
         A.write_to_arduino("1");
         i=1;
     }
     else
+    {
+        mSystemTrayIcon->showMessage(tr("Notification"), tr("l'etat du poteaux a été changé au ON"));
         A.write_to_arduino("0");
+        i=0;
+    }
 }
 
 void POTEAUX::on_lineEdit_textChanged(const QString &arg1)

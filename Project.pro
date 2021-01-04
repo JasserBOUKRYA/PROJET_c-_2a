@@ -84,7 +84,10 @@ FORMS += \
 
 TARGET = Sound
 
+RC_ICONS = myappico.ico
+
 QMAKE_CXXFLAGS += -std=gnu++11
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -92,4 +95,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    Sound.qrc
+    Sound.qrc \
+    res.qrc

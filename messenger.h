@@ -28,6 +28,7 @@ private:
     Ui::Messenger *ui;
     QTcpSocket *mSocket;
     QSound *son;
+    QString verf;
 };
 }
 

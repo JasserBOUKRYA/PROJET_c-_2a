@@ -14,6 +14,8 @@ namespace Ui {
 class POTEAUX;
 }
 
+class QSystemTrayIcon;
+
 class POTEAUX : public QDialog
 {
     Q_OBJECT
@@ -45,6 +47,7 @@ private:
     GestionPoteaux GP_tmp;
     QByteArray data;
     Arduino A;
+    QSystemTrayIcon *mSystemTrayIcon;
     int i;
 };
 

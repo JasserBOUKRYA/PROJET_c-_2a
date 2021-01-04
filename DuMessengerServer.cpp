@@ -47,7 +47,7 @@ void DuMessengerServer::incomingConnection(qintptr handle)
             for (auto i :mSockets)
             {
                 QTextStream K(i);
-                K << "Serveur : client" << S->socketDescriptor() << "Deconnecter";
+                K << "Serveur : Admin: " << S->socketDescriptor() << "Deconnecter";
                 i->flush();
             }
         }
