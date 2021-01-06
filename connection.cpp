@@ -1,25 +1,21 @@
 #include "connection.h"
-
-//Test Tutoriel Git
-
-Connection::Connection()
+#include "QSqlDatabase"
+#include <QDebug>
+#include <QSqlError>
+connection::connection()
 {
 
 }
 
-bool Connection::createconnection()
-{bool test=false;
+bool connection::createconnect()
+{
+    bool test=false;
 QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-db.setDatabaseName("test-bd");//inserer le nom de la source de données ODBC
-db.setUserName("youssef");//inserer nom de l'utilisateur
-db.setPassword("youssef");//inserer mot de passe de cet utilisateur
-
+db.setDatabaseName("mehdi_bd");//inserer le nom de la source de données ODBC
+db.setUserName("mehdi1");//inserer nom de l'utilisateur
+db.setPassword("mehdi1");//inserer mot de passe de cet utilisateur
 
 if (db.open())
 test=true;
-
-
     return  test;
 }
-
-
