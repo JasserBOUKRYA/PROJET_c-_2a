@@ -25,6 +25,7 @@ POTEAUX::POTEAUX(QWidget *parent) :
     QObject::connect(A.getserial(), SIGNAL(readyRead()), this, SLOT(update_label()));
 
     i=0;
+    test = 1;
     son=new QSound(":/sons/cassette-player-button-3.wav");
 
     QPixmap pix("C:/Users/PCONE/Desktop/background.png");
@@ -34,13 +35,45 @@ POTEAUX::POTEAUX(QWidget *parent) :
     ui->tableView->setModel(GP_tmp.afficher());
 
     ui->pushButton_4->setCheckable(true);
-    ui->pushButton_4->setStyleSheet("QPushButton{background-color:lightgreen;}"
-                                    "QPushButton:checked{background-color:red;}");
+    /*ui->pushButton_4->setStyleSheet("QPushButton{background-color:lightgreen;}"
+                                    "QPushButton:checked{background-color:red;}");*/
     ui->tableView->setPalette(QPalette(Qt::lightGray));
 
     changerbuttoncolor(ui->pushButton);
     changerbuttoncolor(ui->pushButton_2);
     changerbuttoncolor(ui->pushButton_3);
+
+    QSqlQuery q;
+    q.prepare("SELECT COUNT(*) FROM POTEAUX WHERE etat = :etat");
+    q.bindValue(":etat", "OFF");
+    q.exec();
+    int rows = 0;
+    if (q.next())
+    {
+        rows = q.value(0).toInt();
+    }
+    if (rows>0)
+    {
+        A.write_to_arduino("0");
+        i=0;
+        ui->pushButton_4->setStyleSheet( "QPushButton"
+                                      "{"
+                                      "background-color : red;"
+                                      "}"
+                                      );
+    }
+        else
+    {
+            A.write_to_arduino("1");
+            i=1;
+            ui->pushButton_4->setStyleSheet( "QPushButton"
+                                          "{"
+                                          "background-color : lightgreen;"
+                                          "}"
+                                          );
+    }
+
+
 }
 
 POTEAUX::~POTEAUX()
@@ -158,11 +191,12 @@ void POTEAUX::on_pushButton_3_clicked()
 }
 
 void POTEAUX::update_label()
-{
+{   
     data = A.read_from_arduino();
 
     if (data == "0")
     {
+
         QString value = "OFF";
 
         QSqlQuery query;
@@ -204,15 +238,25 @@ void POTEAUX::on_pushButton_4_clicked()
 
     if (i == 0)
     {
-        mSystemTrayIcon->showMessage(tr("Notification"), tr("l'etat du poteaux a été changé au OFF"));
+        mSystemTrayIcon->showMessage(tr("Notification"), tr("l'etat du poteaux a été changé au ON"));
         A.write_to_arduino("1");
         i=1;
+        ui->pushButton_4->setStyleSheet( "QPushButton"
+                                      "{"
+                                      "background-color : lightgreen;"
+                                      "}"
+                                      );
     }
     else
     {
-        mSystemTrayIcon->showMessage(tr("Notification"), tr("l'etat du poteaux a été changé au ON"));
+        mSystemTrayIcon->showMessage(tr("Notification"), tr("l'etat du poteaux a été changé au OFF"));
         A.write_to_arduino("0");
         i=0;
+        ui->pushButton_4->setStyleSheet( "QPushButton"
+                                      "{"
+                                      "background-color : red;"
+                                      "}"
+                                      );
     }
 }
 
@@ -251,3 +295,4 @@ void POTEAUX::changerbuttoncolor(QPushButton * PB)
                                   "}"
                                   );
 }
+

@@ -49,6 +49,7 @@ private:
     Arduino A;
     QSystemTrayIcon *mSystemTrayIcon;
     int i;
+    int test;
 };
 
 #endif // POTEAUX_H

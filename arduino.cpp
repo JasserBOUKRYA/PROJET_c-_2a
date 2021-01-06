@@ -82,7 +82,7 @@ int Arduino::write_to_arduino(QByteArray d)
     }
     else
     {
-        qDebug() << "erreur en l'exriture sur le serial!";
+        qDebug() << "erreur en l'ecriture sur le serial!";
     }
 }
 
