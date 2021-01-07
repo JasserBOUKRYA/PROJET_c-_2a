@@ -8,6 +8,8 @@
 #include "gestionextrait.h"
 #include "gestionpermis.h"
 #include "gestiondechet.h"
+#include "gestionvehicule.h"
+#include "gestionparking.h"
 #include <QSound>
 
 namespace Ui {
@@ -37,6 +39,10 @@ private slots:
     void on_pushButton_4_clicked();
 
     void on_pushButton_8_clicked();
+
+    void on_pushButton_5_clicked();
+
+    void on_pushButton_6_clicked();
 
 private:
     Ui::Menuadmin *ui;

@@ -29,6 +29,19 @@ Menuadmin::Menuadmin(QWidget *parent) :
     QPalette palette = ui->label_2->palette();
     palette.setColor(QPalette::WindowText, color);
     ui->label_2->setPalette(palette);
+
+    QString verf;
+
+    QFile file("C:\\Users\\PCONE\\Desktop\\login.txt");
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        QMessageBox::information(0, "info", file.errorString());
+    }
+    QTextStream in(&file);
+     verf = in.readAll();
+
+     ui->label_4->setText(verf);
+     ui->label_4->setPalette(palette);
 }
 
 Menuadmin::~Menuadmin()
@@ -103,4 +116,20 @@ void Menuadmin::on_pushButton_8_clicked()
     GestionDechet GD;
     GD.setModal(true);
     GD.exec();
+}
+
+void Menuadmin::on_pushButton_5_clicked()
+{
+    son->play();
+    GestionVehicule GV;
+    GV.setModal(true);
+    GV.exec();
+}
+
+void Menuadmin::on_pushButton_6_clicked()
+{
+    son->play();
+    GestionParking GP;
+    GP.setModal(true);
+    GP.exec();
 }

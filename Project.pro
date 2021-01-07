@@ -26,19 +26,23 @@ SOURCES += \
     gestionemployee.cpp \
     gestionextrait.cpp \
     gestioninstallation.cpp \
+    gestionparking.cpp \
     gestionpermis.cpp \
     gestionpoteaux.cpp \
     gestiontaxe.cpp \
+    gestionvehicule.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
     menuadmin.cpp \
     messenger.cpp \
+    parking.cpp \
     permis.cpp \
     poteaux.cpp \
     recherchebon.cpp \
     rechercher.cpp \
-    taxe.cpp
+    taxe.cpp \
+    vehicule.cpp
 
 HEADERS += \
     DuMessengerServer.h \
@@ -54,26 +58,32 @@ HEADERS += \
     gestionemployee.h \
     gestionextrait.h \
     gestioninstallation.h \
+    gestionparking.h \
     gestionpermis.h \
     gestionpoteaux.h \
     gestiontaxe.h \
+    gestionvehicule.h \
     mainwindow.h \
     menu.h \
     menuadmin.h \
     messenger.h \
+    parking.h \
     permis.h \
     poteaux.h \
     recherchebon.h \
     rechercher.h \
-    taxe.h
+    taxe.h \
+    vehicule.h
 
 FORMS += \
     gestiondechet.ui \
     gestionemployee.ui \
     gestionextrait.ui \
     gestioninstallation.ui \
+    gestionparking.ui \
     gestionpermis.ui \
     gestiontaxe.ui \
+    gestionvehicule.ui \
     mainwindow.ui \
     menu.ui \
     menuadmin.ui \

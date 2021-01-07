@@ -2,6 +2,7 @@
 #define GESTIONPERMIS_H
 
 #include <QDialog>
+#include "arduino.h"
 #include <QMessageBox>
 #include <QIntValidator>
 #include "permis.h"
@@ -14,7 +15,6 @@
 #include <QTextEdit>
 #include <QTextStream>
 #include <QPalette>
-#include <arduino.h>
 #include<QDebug>
 #include <iostream>
 #include <QSound>
