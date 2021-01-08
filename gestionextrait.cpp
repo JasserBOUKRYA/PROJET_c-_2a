@@ -23,6 +23,13 @@ GestionExtrait::GestionExtrait(QWidget *parent) :
     changerbuttoncolor(ui->imprimer_3);
     changerbuttoncolor(ui->modifiextrait);
     changerbuttoncolor(ui->pushButton_2);
+    changerbuttoncolor(ui->pushButton_3);
+    changerbuttoncolor(ui->stat);
+
+    QColor color  = "white";
+    QPalette palette = ui->timer->palette();
+    palette.setColor(QPalette::WindowText, color);
+    ui->timer->setPalette(palette);
 }
 
 
@@ -242,4 +249,108 @@ void GestionExtrait::on_pushButton_2_clicked()
 {
     son->play();
     close();
+}
+
+void GestionExtrait::on_stat_clicked()
+{
+    QPieSeries *series = new QPieSeries();
+               series->append("nabeul",80);
+               series->append("sfax",70);
+               series->append("sousse",60);
+               series->append("tunis",50);
+               series->append("mestir",40);
+               QPieSlice *slice= series->slices().at(1);
+               slice->setExploded(true);
+               slice->setLabelVisible(true);
+               slice->setPen(QPen(Qt::darkGreen,2));
+               slice->setBrush(Qt::green);
+               QChart *chart = new QChart();
+               chart->addSeries(series);
+               chart->setTitle("stat");
+               QChartView *chartview=new QChartView(chart);
+               //chartview->setParent(ui->horizontalFrame);
+               chartview->setParent(ui->horizontalFrame);
+               ui->statistique ->setCurrentIndex(2);
+}
+
+void GestionExtrait::on_pushButton_3_clicked()
+{
+    son->play();
+
+        QTableView *table;
+
+                                table = ui->tableView;
+                                QString filters("Excel Files (.xls)");
+                                QString defaultFilter("Excel Files (*.xls)");
+                                QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
+
+                                                   filters, &defaultFilter);
+
+                                QFile file(fileName);
+                                QAbstractItemModel *model =  table->model();
+
+                                if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+
+                                    QTextStream data(&file);
+
+                                    QStringList strList;
+
+                                    for (int i = 0; i < model->columnCount(); i++) {
+
+                                        if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+
+                                            strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+
+                                        else
+
+                                            strList.append("");
+
+                                    }
+
+                                    data << strList.join(";") << "\n";
+
+                                    for (int i = 0; i < model->rowCount(); i++) {
+
+                                        strList.clear();
+
+                                        for (int j = 0; j < model->columnCount(); j++) {
+
+
+                                            if (model->data(model->index(i, j)).toString().length() > 0)
+
+                                                strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+
+                                            else
+
+                                                strList.append("");
+
+                                        }
+
+                                        data << strList.join(";") + "\n";
+
+                                    }
+
+                                    file.close();
+
+                                    QMessageBox::information(nullptr, QObject::tr("Export excel"),
+
+                                                              QObject::tr("Export avec succes .\n"
+
+                                                                          "Click OK to exit."), QMessageBox::Ok);
+                }
+
+
+}
+
+void GestionExtrait:: showtime()
+    {
+        QTime time = QTime::currentTime();
+
+        QString time_text=time.toString("hh : mm : ss");
+        if((time.second() % 2) == 0 )
+        {
+            time_text[3] = ' ';
+            time_text[8] = ' ';
+        }
+        ui->timer->setText(time_text);
 }

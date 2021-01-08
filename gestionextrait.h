@@ -30,7 +30,14 @@
 #include<QtSql/QSqlQuery>
 #include<QVariant>
 #include <QSound>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+#include <QPieSeries>
+#include <Qtcharts>
+
 #include "extrait.h"
+#include "exportexcelobject.h"
 
 namespace Ui {
 class GestionExtrait;
@@ -62,6 +69,13 @@ private slots:
     void changerbuttoncolor(QPushButton * PB);
 
     void on_pushButton_2_clicked();
+
+    void on_stat_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void showtime();
+
 
 private:
     Ui::GestionExtrait *ui;

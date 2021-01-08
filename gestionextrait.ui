@@ -55,7 +55,7 @@
       <enum>Qt::RichText</enum>
      </property>
     </widget>
-    <widget class="QTabWidget" name="tabWidget_3">
+    <widget class="QTabWidget" name="statistique">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -75,7 +75,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -575,6 +575,19 @@
         <string>Quitter</string>
        </property>
       </widget>
+      <widget class="QLabel" name="timer">
+       <property name="geometry">
+        <rect>
+         <x>670</x>
+         <y>520</y>
+         <width>201</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
       <zorder>label_6</zorder>
       <zorder>le_idd</zorder>
       <zorder>label_15</zorder>
@@ -602,6 +615,7 @@
       <zorder>le_situationf</zorder>
       <zorder>cb_sexe</zorder>
       <zorder>pushButton_2</zorder>
+      <zorder>timer</zorder>
      </widget>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">
@@ -1179,6 +1193,32 @@
         <string/>
        </property>
       </widget>
+      <widget class="QPushButton" name="stat">
+       <property name="geometry">
+        <rect>
+         <x>770</x>
+         <y>490</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Statistique</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="geometry">
+        <rect>
+         <x>770</x>
+         <y>540</y>
+         <width>93</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Excel</string>
+       </property>
+      </widget>
       <zorder>label</zorder>
       <zorder>tableView</zorder>
       <zorder>le_recherche</zorder>
@@ -1213,6 +1253,24 @@
       <zorder>button_tri</zorder>
       <zorder>imprimer_3</zorder>
       <zorder>pushButton</zorder>
+      <zorder>stat</zorder>
+      <zorder>pushButton_3</zorder>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Statistiques</string>
+      </attribute>
+      <widget class="QFrame" name="horizontalFrame">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>831</width>
+         <height>571</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout"/>
+      </widget>
      </widget>
     </widget>
    </widget>

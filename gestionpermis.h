@@ -18,6 +18,11 @@
 #include<QDebug>
 #include <iostream>
 #include <QSound>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+#include <QPieSeries>
+#include <Qtcharts>
 
 
 namespace Ui {
@@ -50,6 +55,13 @@ private slots:
     void on_le_recherche_p_textChanged(const QString &arg1);
 
     void changerbuttoncolor(QPushButton * PB);
+
+    void on_statistique_clicked();
+
+    void on_excel_clicked();
+
+    void showtime();
+
 
 private:
     Ui::GestionPermis *ui;

@@ -193,8 +193,10 @@ void POTEAUX::on_pushButton_3_clicked()
 void POTEAUX::update_label()
 {   
     data = A.read_from_arduino();
+    QString DataAsString = QString(data);
+    qDebug()<<data;
 
-    if (data == "0")
+    if (DataAsString == "0")
     {
 
         QString value = "OFF";
@@ -213,7 +215,7 @@ void POTEAUX::update_label()
         }
     }
 
-    else if (data == "1")
+    else if (DataAsString == "1")
     {
         QString value = "ON";
 

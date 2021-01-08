@@ -190,6 +190,9 @@ void GestionParking::changerbuttoncolor(QPushButton * PB)
 
 void GestionParking::update_label()
 {
+    data=A.read_from_arduino();
+    QString DataAsString = QString(data);
+    qDebug()<<data;
     if (data=="1")
         ui->label_13->setText("ON");
     else if (data == "0")
