@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>backgroundmenu.png</file>
+        <file>bg.png</file>
+        <file>bgdechet.png</file>
+        <file>bgextrait.png</file>
+        <file>bgmessenger.png</file>
+        <file>bgparking.png</file>
+        <file>bgpermis.png</file>
+        <file>bgtaxe.png</file>
+        <file>bgvehicule.png</file>
+        <file>background.png</file>
+        <file>logo2.png</file>
+    </qresource>
+</RCC>

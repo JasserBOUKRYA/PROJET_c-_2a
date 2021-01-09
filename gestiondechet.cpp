@@ -9,7 +9,7 @@ GestionDechet::GestionDechet(QWidget *parent) :
 
     son=new QSound(":/sons/cassette-player-button-3.wav");
 
-    QPixmap pix("C:/Users/PCONE/Desktop/bgpermis.png");
+    QPixmap pix(":/bgpermis.png");
     ui->label->setPixmap(pix);
     ui->label_2->setPixmap(pix);
 

@@ -8,7 +8,7 @@ GestionVehicule::GestionVehicule(QWidget *parent) :
     ui->setupUi(this);
     ui->tabvehicule->setModel(v_temp.afficher());
     son=new QSound(":/sons/cassette-player-button-3.wav");
-    QPixmap pix("C:/Users/PCONE/Desktop/bgvehicule.png");
+    QPixmap pix(":/bgvehicule.png");
     ui->label_17->setPixmap(pix);
     ui->label_18->setPixmap(pix);
     ui->label_19->setPixmap(pix);

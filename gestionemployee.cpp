@@ -30,7 +30,7 @@ GestionEmployee::GestionEmployee(QWidget *parent) :
 
     ui->progressBar->setValue(0);
 
-    QPixmap pix("C:/Users/PCONE/Desktop/bg.png");
+    QPixmap pix(":/bg.png");
     ui->label_10->setPixmap(pix);
     ui->label_19->setPixmap(pix);
     ui->label_20->setPixmap(pix);

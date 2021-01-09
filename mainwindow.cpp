@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     son=new QSound(":/sons/cassette-player-button-3.wav");
 
-    QPixmap pix("C:/Users/PCONE/Desktop/logo2.png");
+    QPixmap pix(":/logo2.png");
     ui->label_3->setPixmap(pix);
 }
 

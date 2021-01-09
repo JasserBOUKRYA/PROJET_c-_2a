@@ -12,7 +12,7 @@ GestionExtrait::GestionExtrait(QWidget *parent) :
 
     ui->tableView->setPalette(QPalette(Qt::lightGray));
 
-    QPixmap pix("C:/Users/PCONE/Desktop/bgextrait.png");
+    QPixmap pix(":/bgextrait.png");
 
     ui->label->setPixmap(pix);
     ui->label_6->setPixmap(pix);

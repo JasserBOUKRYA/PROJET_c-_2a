@@ -18,7 +18,7 @@ GestionInstallation::GestionInstallation(QWidget *parent) :
      ui->tableView_6->setPalette(QPalette(Qt::lightGray));
      ui->tableView_7->setPalette(QPalette(Qt::lightGray));
 
-     QPixmap pix("C:/Users/PCONE/Desktop/bg.png");
+     QPixmap pix(":/bg.png");
      ui->label->setPixmap(pix);
      ui->label_2->setPixmap(pix);
      ui->label_3->setPixmap(pix);

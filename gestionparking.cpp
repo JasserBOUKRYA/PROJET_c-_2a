@@ -17,7 +17,7 @@ GestionParking::GestionParking(QWidget *parent) :
             changerbuttoncolor(ui->modifier_pk);
             changerbuttoncolor(ui->imprimer);
 
-            QPixmap pix("C:/Users/PCONE/Desktop/bgparking.png");
+            QPixmap pix(":/bgparking.png");
             ui->label_8->setPixmap(pix);
             ui->label_9->setPixmap(pix);
             ui->label_10->setPixmap(pix);

@@ -12,7 +12,7 @@ Menu::Menu(QWidget *parent) :
 {
     ui->setupUi(this);
     son=new QSound(":/sons/cassette-player-button-3.wav");
-    QPixmap pix("C:/Users/PCONE/Desktop/backgroundmenu.png");
+    QPixmap pix(":/backgroundmenu.png");
     ui->label->setPixmap(pix);
     changerbuttoncolor(ui->pushButton);
     changerbuttoncolor(ui->pushButton_2);

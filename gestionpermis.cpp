@@ -9,7 +9,7 @@ GestionPermis::GestionPermis(QWidget *parent) :
 
     son=new QSound(":/sons/cassette-player-button-3.wav");
 
-    QPixmap pix("C:/Users/PCONE/Desktop/bgpermis.png");
+    QPixmap pix(":/bgpermis.png");
     ui->label_3->setPixmap(pix);
     ui->label_4->setPixmap(pix);
 

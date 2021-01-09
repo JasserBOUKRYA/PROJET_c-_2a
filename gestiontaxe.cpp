@@ -8,7 +8,7 @@ GestionTaxe::GestionTaxe(QWidget *parent) :
     ui->setupUi(this);
 
     son=new QSound(":/sons/cassette-player-button-3.wav");
-    QPixmap pix("C:/Users/PCONE/Desktop/bgtaxe.png");
+    QPixmap pix(":/bgtaxe.png");
     ui->label->setPixmap(pix);
     ui->label_2->setPixmap(pix);
 

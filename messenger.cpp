@@ -21,7 +21,7 @@ Messenger::Messenger(QWidget *parent) :
     son=new QSound(":/sons/cassette-player-button-3.wav");
     changerbuttoncolor(ui->send);
 
-    QPixmap pix("C:/Users/PCONE/Desktop/bgmessenger.png");
+    QPixmap pix(":/bgmessenger.png");
     ui->label->setPixmap(pix);
 
     mSocket->connectToHost("localhost", 3333);
